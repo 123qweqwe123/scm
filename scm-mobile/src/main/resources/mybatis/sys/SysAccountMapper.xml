@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jet.scm.mobile.web.sys.mapper.SysAccountMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.mobile.web.sys.domain.SysAccount">
+    <id column="ID" jdbcType="VARCHAR" property="id"/>
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName"/>
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+    <result column="NAME" jdbcType="VARCHAR" property="name"/>
+    <result column="SALT" jdbcType="VARCHAR" property="salt"/>
+    <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+    <result column="IS_ADMIN" jdbcType="DECIMAL" property="isAdmin"/>
+    <result column="ORGANIZATION_ID" jdbcType="VARCHAR" property="organizationId"/>
+    <result column="STATUS" jdbcType="DECIMAL" property="status"/>
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser"/>
+    <result column="CREATE_DATETIME" jdbcType="TIMESTAMP" property="createDatetime"/>
+    <result column="UPDATE_USER" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="UPDATE_DATETIME" jdbcType="TIMESTAMP" property="updateDatetime"/>
+    <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+    <result column="IS_DELETE" jdbcType="DECIMAL" property="isDelete"/>
+    <result column="PROJECT_ID" jdbcType="VARCHAR" property="projectId"/>
+    <result column="LCC_CODE" jdbcType="VARCHAR" property="lccCode"/>
+    <result column="USER_CODE" jdbcType="VARCHAR" property="userCode"/>
+    <result column="HELP_CODE" jdbcType="VARCHAR" property="helpCode"/>
+    <result column="SEX" jdbcType="DECIMAL" property="sex"/>
+    <result column="TEL_NUMBER" jdbcType="VARCHAR" property="telNumber"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, LOGIN_NAME, PASSWORD, NAME, SALT, EMAIL, IS_ADMIN, ORGANIZATION_ID, STATUS, CREATE_USER,
+    CREATE_DATETIME, UPDATE_USER, UPDATE_DATETIME, REMARK, IS_DELETE, PROJECT_ID, LCC_CODE,
+    USER_CODE, HELP_CODE, SEX, TEL_NUMBER
+  </sql>
+  <select id="selectByExample" parameterType="com.jet.scm.mobile.web.sys.domain.SysAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from SYS_ACCOUNT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from SYS_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.scm.mobile.web.sys.domain.SysAccountExample" resultType="java.lang.Long">
+    select count(*) from SYS_ACCOUNT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYS_ACCOUNT
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginName != null">
+        LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null">
+        SALT = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAdmin != null">
+        IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.organizationId != null">
+        ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createUser != null">
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDatetime != null">
+        CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDatetime != null">
+        UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectId != null">
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccCode != null">
+        LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null">
+        USER_CODE = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpCode != null">
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        SEX = #{record.sex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.telNumber != null">
+        TEL_NUMBER = #{record.telNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYS_ACCOUNT
+    set ID = #{record.id,jdbcType=VARCHAR},
+    LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+    PASSWORD = #{record.password,jdbcType=VARCHAR},
+    NAME = #{record.name,jdbcType=VARCHAR},
+    SALT = #{record.salt,jdbcType=VARCHAR},
+    EMAIL = #{record.email,jdbcType=VARCHAR},
+    IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+    ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+    STATUS = #{record.status,jdbcType=DECIMAL},
+    CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+    CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+    UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+    UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+    REMARK = #{record.remark,jdbcType=VARCHAR},
+    IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+    PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+    LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+    USER_CODE = #{record.userCode,jdbcType=VARCHAR},
+    HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+    SEX = #{record.sex,jdbcType=DECIMAL},
+    TEL_NUMBER = #{record.telNumber,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.mobile.web.sys.domain.SysAccount">
+    update SYS_ACCOUNT
+    <set>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null">
+        IS_ADMIN = #{isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="organizationId != null">
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null">
+        CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null">
+        LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="telNumber != null">
+        TEL_NUMBER = #{telNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.mobile.web.sys.domain.SysAccount">
+    update SYS_ACCOUNT
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+    PASSWORD = #{password,jdbcType=VARCHAR},
+    NAME = #{name,jdbcType=VARCHAR},
+    SALT = #{salt,jdbcType=VARCHAR},
+    EMAIL = #{email,jdbcType=VARCHAR},
+    IS_ADMIN = #{isAdmin,jdbcType=DECIMAL},
+    ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+    STATUS = #{status,jdbcType=DECIMAL},
+    CREATE_USER = #{createUser,jdbcType=VARCHAR},
+    CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+    UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+    UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+    REMARK = #{remark,jdbcType=VARCHAR},
+    IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+    PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+    LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+    USER_CODE = #{userCode,jdbcType=VARCHAR},
+    HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+    SEX = #{sex,jdbcType=DECIMAL},
+    TEL_NUMBER = #{telNumber,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

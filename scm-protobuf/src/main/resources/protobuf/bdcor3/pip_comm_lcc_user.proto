@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+option java_package = "com.jet.datasync.bdcor3.proto";
+option java_outer_classname = "PipCommLccUserProtos";
+
+message TransPipCommLccUser {
+
+    repeated PipCommLccUser PipCommLccUsers = 1;
+
+    message PipCommLccUser {
+        required string user_code = 1;
+        optional string name = 2;
+        optional string phone = 3;
+        optional string email = 4;
+        required string lcc_code = 5;
+        optional string lcc_role = 6;
+        optional string is_sign_signa = 7;
+        optional string is_get_resume = 8;
+        optional string is_join_training = 9;
+        optional string status = 10 [default = '2'];
+        required string project_id = 11;
+        optional string mobile = 12;
+        optional string addtolinkman = 13 [default = '2'];
+        optional string linkman_code = 14;
+        optional string help_code = 15;
+        optional string gender = 16;
+        optional string department = 17;
+        optional string major = 18;
+        optional string duty = 19;
+        optional int64 birthday = 20;
+
+    }
+}

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jet.scm.mobile.web.spem.mapper.ScmMobileTransferDetailPicMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPic">
+    <id column="ID" jdbcType="VARCHAR" property="id"/>
+    <result column="TRANS_MOBILE_DETAIL_ID" jdbcType="VARCHAR" property="transMobileDetailId"/>
+    <result column="SRC_FILE_NAME" jdbcType="VARCHAR" property="srcFileName"/>
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName"/>
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath"/>
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy"/>
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TRANS_MOBILE_DETAIL_ID, SRC_FILE_NAME, FILE_NAME, FILE_PATH, CREATE_TIME, CREATE_BY, 
+    UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByExample" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPicExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from SCM_MOBILE_TRANSFER_DETAIL_PIC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from SCM_MOBILE_TRANSFER_DETAIL_PIC
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SCM_MOBILE_TRANSFER_DETAIL_PIC
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPicExample">
+    delete from SCM_MOBILE_TRANSFER_DETAIL_PIC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPic">
+    insert into SCM_MOBILE_TRANSFER_DETAIL_PIC (ID, TRANS_MOBILE_DETAIL_ID, SRC_FILE_NAME, 
+      FILE_NAME, FILE_PATH, CREATE_TIME, 
+      CREATE_BY, UPDATE_TIME, UPDATE_BY
+      )
+    values (#{id,jdbcType=VARCHAR}, #{transMobileDetailId,jdbcType=VARCHAR}, #{srcFileName,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPic">
+    insert into SCM_MOBILE_TRANSFER_DETAIL_PIC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="transMobileDetailId != null">
+        TRANS_MOBILE_DETAIL_ID,
+      </if>
+      <if test="srcFileName != null">
+        SRC_FILE_NAME,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="transMobileDetailId != null">
+        #{transMobileDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcFileName != null">
+        #{srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPicExample" resultType="java.lang.Long">
+    select count(*) from SCM_MOBILE_TRANSFER_DETAIL_PIC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SCM_MOBILE_TRANSFER_DETAIL_PIC
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transMobileDetailId != null">
+        TRANS_MOBILE_DETAIL_ID = #{record.transMobileDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcFileName != null">
+        SRC_FILE_NAME = #{record.srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null">
+        FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filePath != null">
+        FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SCM_MOBILE_TRANSFER_DETAIL_PIC
+    set ID = #{record.id,jdbcType=VARCHAR},
+    TRANS_MOBILE_DETAIL_ID = #{record.transMobileDetailId,jdbcType=VARCHAR},
+    SRC_FILE_NAME = #{record.srcFileName,jdbcType=VARCHAR},
+    FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+    FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+    CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+    CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPic">
+    update SCM_MOBILE_TRANSFER_DETAIL_PIC
+    <set>
+      <if test="transMobileDetailId != null">
+        TRANS_MOBILE_DETAIL_ID = #{transMobileDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcFileName != null">
+        SRC_FILE_NAME = #{srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.mobile.web.spem.domain.ScmMobileTransferDetailPic">
+    update SCM_MOBILE_TRANSFER_DETAIL_PIC
+    set TRANS_MOBILE_DETAIL_ID = #{transMobileDetailId,jdbcType=VARCHAR},
+      SRC_FILE_NAME = #{srcFileName,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

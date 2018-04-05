@@ -1,0 +1,65 @@
+---
+
+spring:
+  profiles:
+    active: development
+server:
+  session:
+    timeout: 86400
+  port: 8912
+protobuf:
+  encrypt:
+    key:  1024
+login:
+  username: jjddh
+  password: 1jcsxdl@mqDlf
+
+---
+
+spring:
+  profiles: development
+  datasource:
+    druid:
+      one:
+        url: jdbc:oracle:thin:@10.24.10.224:1521:bdcor5
+        username: bdcor5
+        password: develop
+        driver-class-name: oracle.jdbc.OracleDriver
+        max-active: 100
+        max-idele: 10
+        max-wait: 10000
+        test-while-idle: true
+      two:
+        url: jdbc:oracle:thin:@10.24.10.187:1521:bdcor
+        username: bdcor
+        password: develop
+        driver-class-name: oracle.jdbc.OracleDriver
+        max-active: 100
+        max-idele: 10
+        max-wait: 10000
+        test-while-idle: true
+
+---
+
+spring:
+  profiles: production
+  datasource:
+      druid:
+        one:
+          url: jdbc:oracle:thin:@10.24.10.18:1521:sjcjSid
+          username: ncrc
+          password: ncrc2016
+          driver-class-name: oracle.jdbc.OracleDriver
+          max-active: 100
+          max-idele: 10
+          max-wait: 10000
+          test-while-idle: true
+        two:
+          url: jdbc:oracle:thin:@10.24.10.187:1521:bdcor
+          username: bdcor
+          password: develop
+          driver-class-name: oracle.jdbc.OracleDriver
+          max-active: 100
+          max-idele: 10
+          max-wait: 10000
+          test-while-idle: true

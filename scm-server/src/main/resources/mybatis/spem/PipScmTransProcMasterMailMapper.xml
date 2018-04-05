@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.spem.mapper.PipScmTransProcMasterMailMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.spem.domain.PipScmTransProcMasterMail">
+    <id column="ID" property="id" jdbcType="VARCHAR"/>
+    <result column="TRANS_ID" property="transId" jdbcType="VARCHAR"/>
+    <result column="TRANS_NO" property="transNo" jdbcType="VARCHAR"/>
+    <result column="EMAIL_ID" property="emailId" jdbcType="VARCHAR"/>
+    <result column="EMAIL" property="email" jdbcType="VARCHAR"/>
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="EMAIL_TYPE" property="emailType" jdbcType="DECIMAL"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TRANS_ID, TRANS_NO, EMAIL_ID, EMAIL, CREATE_BY, CREATE_TIME, UPDATE_BY, UPDATE_TIME,
+    EMAIL_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcMasterMailExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_MASTER_MAIL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_MASTER_MAIL
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcMasterMail">
+    insert into PIP_SCM_TRANS_PROC_MASTER_MAIL (ID, TRANS_ID, TRANS_NO,
+    EMAIL_ID, EMAIL, CREATE_BY,
+    CREATE_TIME, UPDATE_BY, UPDATE_TIME,
+    EMAIL_TYPE)
+    values (#{id,jdbcType=VARCHAR}, #{transId,jdbcType=VARCHAR}, #{transNo,jdbcType=VARCHAR},
+    #{emailId,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+    #{emailType,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcMasterMail">
+    insert into PIP_SCM_TRANS_PROC_MASTER_MAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="transId != null">
+        TRANS_ID,
+      </if>
+      <if test="transNo != null">
+        TRANS_NO,
+      </if>
+      <if test="emailId != null">
+        EMAIL_ID,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="emailType != null">
+        EMAIL_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null">
+        #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailId != null">
+        #{emailId,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emailType != null">
+        #{emailType,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PIP_SCM_TRANS_PROC_MASTER_MAIL
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transId != null">
+        TRANS_ID = #{record.transId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transNo != null">
+        TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emailId != null">
+        EMAIL_ID = #{record.emailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.emailType != null">
+        EMAIL_TYPE = #{record.emailType,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PIP_SCM_TRANS_PROC_MASTER_MAIL
+    set ID = #{record.id,jdbcType=VARCHAR},
+    TRANS_ID = #{record.transId,jdbcType=VARCHAR},
+    TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+    EMAIL_ID = #{record.emailId,jdbcType=VARCHAR},
+    EMAIL = #{record.email,jdbcType=VARCHAR},
+    CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+    CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+    EMAIL_TYPE = #{record.emailType,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcMasterMail">
+    update PIP_SCM_TRANS_PROC_MASTER_MAIL
+    <set>
+      <if test="transId != null">
+        TRANS_ID = #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null">
+        TRANS_NO = #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emailId != null">
+        EMAIL_ID = #{emailId,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emailType != null">
+        EMAIL_TYPE = #{emailType,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcMasterMail">
+    update PIP_SCM_TRANS_PROC_MASTER_MAIL
+    set TRANS_ID = #{transId,jdbcType=VARCHAR},
+    TRANS_NO = #{transNo,jdbcType=VARCHAR},
+    EMAIL_ID = #{emailId,jdbcType=VARCHAR},
+    EMAIL = #{email,jdbcType=VARCHAR},
+    CREATE_BY = #{createBy,jdbcType=VARCHAR},
+    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+    EMAIL_TYPE = #{emailType,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.datasync.bdcor3.mapper.PipCommLccUser3Mapper" >
+  <resultMap id="BaseResultMap" type="com.jet.datasync.bdcor3.domain.PipCommLccUser3" >
+    <id column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <id column="LCC_CODE" property="lccCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="LCC_ROLE" property="lccRole" jdbcType="VARCHAR" />
+    <result column="IS_SIGN_SIGNA" property="isSignSigna" jdbcType="CHAR" />
+    <result column="IS_GET_RESUME" property="isGetResume" jdbcType="CHAR" />
+    <result column="IS_JOIN_TRAINING" property="isJoinTraining" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="ADDTOLINKMAN" property="addtolinkman" jdbcType="CHAR" />
+    <result column="LINKMAN_CODE" property="linkmanCode" jdbcType="VARCHAR" />
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR" />
+    <result column="GENDER" property="gender" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="MAJOR" property="major" jdbcType="VARCHAR" />
+    <result column="DUTY" property="duty" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_CODE, PROJECT_ID, LCC_CODE, NAME, PHONE, EMAIL, LCC_ROLE, IS_SIGN_SIGNA, IS_GET_RESUME, 
+    IS_JOIN_TRAINING, STATUS, MOBILE, ADDTOLINKMAN, LINKMAN_CODE, HELP_CODE, GENDER, 
+    DEPARTMENT, MAJOR, DUTY, BIRTHDAY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor3.domain.PipCommLccUser3Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_COMM_LCC_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor3.domain.PipCommLccUser3Key" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_COMM_LCC_USER
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.datasync.bdcor3.domain.PipCommLccUser3Example" resultType="java.lang.Integer" >
+    select count(*) from PIP_COMM_LCC_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

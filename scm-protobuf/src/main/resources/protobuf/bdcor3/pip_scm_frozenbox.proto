@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+option java_package = "com.jet.datasync.bdcor3.proto";
+option java_outer_classname = "PipScmFrozenboxProtos";
+
+message TransPipScmFrozenboxes {
+
+    required string uuid = 1;
+    required int64 transTime = 2;
+    repeated PipScmFrozenbox pipScmFrozenboxs = 3;
+
+    message PipScmFrozenbox {
+        required string box_code = 1;
+        required string box_type = 2;
+        optional string fridge_id = 3;
+        optional int32 box_state = 4;
+        required string project_id = 5;
+        optional string remark = 6;
+        optional int32 is_checkin = 7 [default = 2];
+        optional string checkinlist_id = 8;
+        required string lcc_code = 9;
+        optional int64 create_date = 10;
+        optional string create_by = 11;
+        optional string id = 12;
+        optional string version = 13;
+        optional string client_id = 14;
+        optional int32 update_flag = 15;
+        optional int64 hr3_update_date = 16;
+        optional int64 trans_date = 17;
+    }
+}
+

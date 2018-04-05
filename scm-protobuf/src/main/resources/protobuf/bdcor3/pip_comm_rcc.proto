@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+option java_package = "com.jet.datasync.bdcor3.proto";
+option java_outer_classname = "PipCommRccProtos";
+
+message TransPipCommRcc {
+
+    repeated PipCommRcc PipCommRccs = 1;
+
+    message PipCommRcc {
+        required string project_id = 1;
+        required string rcc_code = 2;
+        optional string rcc_name = 3;
+        optional string country_code = 4;
+        optional string area_code = 5;
+        optional string english_name = 6;
+        optional string address = 7;
+        optional string help_code = 8;
+        optional string latitude_longitude = 9;
+        optional int32 is_join = 10;
+        optional int64 join_time = 11;
+        optional string update_by = 12;
+        optional int64 update_time = 13;
+        required string initial_task = 14;
+        required string risk_task = 15;
+        required string short_followup_task = 16;
+        required string long_followup_task = 17;
+    }
+}

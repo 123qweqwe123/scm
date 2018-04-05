@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.proj.mapper.PipCommRccMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.proj.domain.PipCommRcc">
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR"/>
+    <id column="RCC_CODE" property="rccCode" jdbcType="VARCHAR"/>
+    <result column="RCC_NAME" property="rccName" jdbcType="VARCHAR"/>
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR"/>
+    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR"/>
+    <result column="ENGLISH_NAME" property="englishName" jdbcType="VARCHAR"/>
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR"/>
+    <result column="LATITUDE_LONGITUDE" property="latitudeLongitude" jdbcType="VARCHAR"/>
+    <result column="IS_JOIN" property="isJoin" jdbcType="DECIMAL"/>
+    <result column="JOIN_TIME" property="joinTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+    <result column="INITIAL_TASK" property="initialTask" jdbcType="VARCHAR"/>
+    <result column="RISK_TASK" property="riskTask" jdbcType="VARCHAR"/>
+    <result column="SHORT_FOLLOWUP_TASK" property="shortFollowupTask" jdbcType="VARCHAR"/>
+    <result column="LONG_FOLLOWUP_TASK" property="longFollowupTask" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PROJECT_ID, RCC_CODE, RCC_NAME, COUNTRY_CODE, AREA_CODE, ENGLISH_NAME, ADDRESS, HELP_CODE,
+    LATITUDE_LONGITUDE, IS_JOIN, JOIN_TIME, UPDATE_BY, UPDATE_TIME, INITIAL_TASK, RISK_TASK,
+    SHORT_FOLLOWUP_TASK, LONG_FOLLOWUP_TASK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.proj.domain.PipCommRccExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from PIP_COMM_RCC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.scm.web.proj.domain.PipCommRccKey">
+    select
+    <include refid="Base_Column_List"/>
+    from PIP_COMM_RCC
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+    and RCC_CODE = #{rccCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.jet.scm.web.proj.domain.PipCommRccKey">
+    delete from PIP_COMM_RCC
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+    and RCC_CODE = #{rccCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.proj.domain.PipCommRccExample">
+    delete from PIP_COMM_RCC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.proj.domain.PipCommRcc">
+    insert into PIP_COMM_RCC (PROJECT_ID, RCC_CODE, RCC_NAME,
+    COUNTRY_CODE, AREA_CODE, ENGLISH_NAME,
+    ADDRESS, HELP_CODE, LATITUDE_LONGITUDE,
+    IS_JOIN, JOIN_TIME, UPDATE_BY,
+    UPDATE_TIME, INITIAL_TASK, RISK_TASK,
+    SHORT_FOLLOWUP_TASK, LONG_FOLLOWUP_TASK)
+    values (#{projectId,jdbcType=VARCHAR}, #{rccCode,jdbcType=VARCHAR}, #{rccName,jdbcType=VARCHAR},
+    #{countryCode,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}, #{helpCode,jdbcType=VARCHAR}, #{latitudeLongitude,jdbcType=VARCHAR},
+    #{isJoin,jdbcType=DECIMAL}, #{joinTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR},
+    #{updateTime,jdbcType=DATE}, #{initialTask,jdbcType=VARCHAR}, #{riskTask,jdbcType=VARCHAR},
+    #{shortFollowupTask,jdbcType=VARCHAR}, #{longFollowupTask,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.proj.domain.PipCommRcc">
+    insert into PIP_COMM_RCC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        PROJECT_ID,
+      </if>
+      <if test="rccCode != null">
+        RCC_CODE,
+      </if>
+      <if test="rccName != null">
+        RCC_NAME,
+      </if>
+      <if test="countryCode != null">
+        COUNTRY_CODE,
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE,
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE,
+      </if>
+      <if test="latitudeLongitude != null">
+        LATITUDE_LONGITUDE,
+      </if>
+      <if test="isJoin != null">
+        IS_JOIN,
+      </if>
+      <if test="joinTime != null">
+        JOIN_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="initialTask != null">
+        INITIAL_TASK,
+      </if>
+      <if test="riskTask != null">
+        RISK_TASK,
+      </if>
+      <if test="shortFollowupTask != null">
+        SHORT_FOLLOWUP_TASK,
+      </if>
+      <if test="longFollowupTask != null">
+        LONG_FOLLOWUP_TASK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="rccCode != null">
+        #{rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rccName != null">
+        #{rccName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null">
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null">
+        #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="latitudeLongitude != null">
+        #{latitudeLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isJoin != null">
+        #{isJoin,jdbcType=DECIMAL},
+      </if>
+      <if test="joinTime != null">
+        #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="initialTask != null">
+        #{initialTask,jdbcType=VARCHAR},
+      </if>
+      <if test="riskTask != null">
+        #{riskTask,jdbcType=VARCHAR},
+      </if>
+      <if test="shortFollowupTask != null">
+        #{shortFollowupTask,jdbcType=VARCHAR},
+      </if>
+      <if test="longFollowupTask != null">
+        #{longFollowupTask,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.proj.domain.PipCommRccExample" resultType="java.lang.Integer">
+    select count(*) from PIP_COMM_RCC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PIP_COMM_RCC
+    <set>
+      <if test="record.projectId != null">
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rccCode != null">
+        RCC_CODE = #{record.rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rccName != null">
+        RCC_NAME = #{record.rccName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryCode != null">
+        COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCode != null">
+        AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.englishName != null">
+        ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpCode != null">
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitudeLongitude != null">
+        LATITUDE_LONGITUDE = #{record.latitudeLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isJoin != null">
+        IS_JOIN = #{record.isJoin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.joinTime != null">
+        JOIN_TIME = #{record.joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.initialTask != null">
+        INITIAL_TASK = #{record.initialTask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.riskTask != null">
+        RISK_TASK = #{record.riskTask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortFollowupTask != null">
+        SHORT_FOLLOWUP_TASK = #{record.shortFollowupTask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longFollowupTask != null">
+        LONG_FOLLOWUP_TASK = #{record.longFollowupTask,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PIP_COMM_RCC
+    set PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+    RCC_CODE = #{record.rccCode,jdbcType=VARCHAR},
+    RCC_NAME = #{record.rccName,jdbcType=VARCHAR},
+    COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+    AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+    ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+    ADDRESS = #{record.address,jdbcType=VARCHAR},
+    HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+    LATITUDE_LONGITUDE = #{record.latitudeLongitude,jdbcType=VARCHAR},
+    IS_JOIN = #{record.isJoin,jdbcType=DECIMAL},
+    JOIN_TIME = #{record.joinTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+    INITIAL_TASK = #{record.initialTask,jdbcType=VARCHAR},
+    RISK_TASK = #{record.riskTask,jdbcType=VARCHAR},
+    SHORT_FOLLOWUP_TASK = #{record.shortFollowupTask,jdbcType=VARCHAR},
+    LONG_FOLLOWUP_TASK = #{record.longFollowupTask,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.proj.domain.PipCommRcc">
+    update PIP_COMM_RCC
+    <set>
+      <if test="rccName != null">
+        RCC_NAME = #{rccName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null">
+        COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="latitudeLongitude != null">
+        LATITUDE_LONGITUDE = #{latitudeLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isJoin != null">
+        IS_JOIN = #{isJoin,jdbcType=DECIMAL},
+      </if>
+      <if test="joinTime != null">
+        JOIN_TIME = #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="initialTask != null">
+        INITIAL_TASK = #{initialTask,jdbcType=VARCHAR},
+      </if>
+      <if test="riskTask != null">
+        RISK_TASK = #{riskTask,jdbcType=VARCHAR},
+      </if>
+      <if test="shortFollowupTask != null">
+        SHORT_FOLLOWUP_TASK = #{shortFollowupTask,jdbcType=VARCHAR},
+      </if>
+      <if test="longFollowupTask != null">
+        LONG_FOLLOWUP_TASK = #{longFollowupTask,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+    and RCC_CODE = #{rccCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.proj.domain.PipCommRcc">
+    update PIP_COMM_RCC
+    set RCC_NAME = #{rccName,jdbcType=VARCHAR},
+    COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+    AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+    ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+    ADDRESS = #{address,jdbcType=VARCHAR},
+    HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+    LATITUDE_LONGITUDE = #{latitudeLongitude,jdbcType=VARCHAR},
+    IS_JOIN = #{isJoin,jdbcType=DECIMAL},
+    JOIN_TIME = #{joinTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{updateTime,jdbcType=DATE},
+    INITIAL_TASK = #{initialTask,jdbcType=VARCHAR},
+    RISK_TASK = #{riskTask,jdbcType=VARCHAR},
+    SHORT_FOLLOWUP_TASK = #{shortFollowupTask,jdbcType=VARCHAR},
+    LONG_FOLLOWUP_TASK = #{longFollowupTask,jdbcType=VARCHAR}
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+    and RCC_CODE = #{rccCode,jdbcType=VARCHAR}
+  </update>
+
+  <!--自定义 sql 开始-->
+  <select id="selectRccWithPermission" resultMap="BaseResultMap"
+          parameterType="com.jet.scm.web.proj.qo.RccQO">
+    select
+    <include refid="Base_Column_List"/>
+    from pip_comm_rcc
+    where 1=1
+    <if test="userId != null">
+      rcc_code in
+      (select lcc.rcc_code
+      from pip_comm_lcc lcc
+      where lcc.lcc_code in
+      (select LCC_CODE
+      from pip_sys_user_data_limit
+      where user_id = #{userId}))
+    </if>
+    <if test="provinceCode != null">
+      and AREA_CODE=#{provinceCode}
+    </if>
+
+  </select>
+
+</mapper>

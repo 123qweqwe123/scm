@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+option java_package = "com.jet.datasync.bdcor3.proto";
+option java_outer_classname = "PipCommLccProtos";
+
+message TransPipCommLcc {
+
+    repeated PipCommLcc PipCommLccs = 1;
+
+    message PipCommLcc {
+        required string project_id = 1;
+        required string lcc_code = 2;
+        required string lcc_name = 3;
+        optional string country_code = 4;
+        optional string area_code = 5;
+        required int32 status = 6 [default = 1];
+        optional string create_by = 7;
+        optional int64 create_date = 8;
+        optional string update_by = 9;
+        optional int64 update_date = 10;
+        optional int32 is_removed = 11 [default = 2];
+        optional string ftp_ip = 12 [default = '114.242.126.167'];
+        optional int32 ftp_port = 13 [default = 21];
+        optional string ftp_user = 14 [default = 'put'];
+        optional string ftp_password = 15 [default = 'genertech'];
+        optional int32 cost_sum = 16;
+        optional string english_name = 17;
+        optional string address = 18;
+        optional string project_manager = 19;
+        optional string pm_tel = 20;
+        optional string pm_email = 21;
+        optional int64 contract_sign_date = 22;
+        optional string is_sign_contract = 23;
+        optional int64 higher_approve_date = 24;
+        optional string is_training = 25;
+        optional int64 expect_start_date = 26;
+        optional string lcc_type = 27;
+        optional string is_ethical = 28;
+        optional int64 ethical_effective_date = 29;
+        optional int64 ethical_disable_date = 30;
+        optional string ethical_paper_code = 31;
+        optional string delivery_address = 32;
+        optional string delivery_contact = 33;
+        optional string delivery_tel = 34;
+        optional int64 start_date = 35;
+        optional string contact = 36;
+        optional string tel = 37;
+        optional string rcc_code = 38;
+        optional string is_admin_dep = 39 [default = '2'];
+        optional string organ = 40;
+        optional string lccrole = 41;
+        optional string city_code = 42;
+        optional int32 workload = 43;
+        optional string help_code = 44;
+        optional int64 end_date = 45;
+        optional string lcc_category = 46;
+        optional string hospital_type = 47;
+        optional string pm_duty = 48;
+        optional int64 estimated_begin_time = 49;
+        optional int64 estimated_end_time = 50;
+    }
+}

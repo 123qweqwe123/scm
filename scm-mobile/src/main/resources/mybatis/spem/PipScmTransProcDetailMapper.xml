@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jet.scm.mobile.web.spem.mapper.PipScmTransProcDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetail">
+    <id column="ID" jdbcType="VARCHAR" property="id"/>
+    <result column="MASTER_ID" jdbcType="VARCHAR" property="masterId"/>
+    <result column="TRANS_NO" jdbcType="VARCHAR" property="transNo"/>
+    <result column="TRANS_DETAIL_NO" jdbcType="VARCHAR" property="transDetailNo"/>
+    <result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode"/>
+    <result column="RCC_CODE" jdbcType="VARCHAR" property="rccCode"/>
+    <result column="LCC_CODE" jdbcType="VARCHAR" property="lccCode"/>
+    <result column="BOX_COUNT" jdbcType="DECIMAL" property="boxCount"/>
+    <result column="DETAIL_STATUS" jdbcType="DECIMAL" property="detailStatus"/>
+    <result column="LINK_1_MAN" jdbcType="VARCHAR" property="link1Man"/>
+    <result column="LINK_1_TEL" jdbcType="VARCHAR" property="link1Tel"/>
+    <result column="LINK_2_MAN" jdbcType="VARCHAR" property="link2Man"/>
+    <result column="LINK_2_TEL" jdbcType="VARCHAR" property="link2Tel"/>
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks"/>
+    <result column="PLAN_GET_MAN_ID" jdbcType="VARCHAR" property="planGetManId"/>
+    <result column="PLAN_GET_MAN_NAME" jdbcType="VARCHAR" property="planGetManName"/>
+    <result column="PLAN_GET_DATE" jdbcType="DATE" property="planGetDate"/>
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+    <result column="CREATE_USER_NAME" jdbcType="VARCHAR" property="createUserName"/>
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate"/>
+    <result column="UPDATE_USER_ID" jdbcType="VARCHAR" property="updateUserId"/>
+    <result column="UPDATE_USER_NAME" jdbcType="VARCHAR" property="updateUserName"/>
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate"/>
+    <result column="AREA_NAME" jdbcType="VARCHAR" property="areaName"/>
+    <result column="LCC_NAME" jdbcType="VARCHAR" property="lccName"/>
+    <result column="RCC_NAME" jdbcType="VARCHAR" property="rccName"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, MASTER_ID, TRANS_NO, TRANS_DETAIL_NO, AREA_CODE, RCC_CODE, LCC_CODE, BOX_COUNT, 
+    DETAIL_STATUS, LINK_1_MAN, LINK_1_TEL, LINK_2_MAN, LINK_2_TEL, REMARKS, PLAN_GET_MAN_ID, 
+    PLAN_GET_MAN_NAME, PLAN_GET_DATE, CREATE_USER_ID, CREATE_USER_NAME, CREATE_DATE, 
+    UPDATE_USER_ID, UPDATE_USER_NAME, UPDATE_DATE, AREA_NAME, LCC_NAME, RCC_NAME
+  </sql>
+  <select id="selectByExample" parameterType="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetailExample" resultType="java.lang.Long">
+    select count(*) from PIP_SCM_TRANS_PROC_DETAIL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PIP_SCM_TRANS_PROC_DETAIL
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.masterId != null">
+        MASTER_ID = #{record.masterId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transNo != null">
+        TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDetailNo != null">
+        TRANS_DETAIL_NO = #{record.transDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCode != null">
+        AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rccCode != null">
+        RCC_CODE = #{record.rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccCode != null">
+        LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boxCount != null">
+        BOX_COUNT = #{record.boxCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.detailStatus != null">
+        DETAIL_STATUS = #{record.detailStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.link1Man != null">
+        LINK_1_MAN = #{record.link1Man,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link1Tel != null">
+        LINK_1_TEL = #{record.link1Tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link2Man != null">
+        LINK_2_MAN = #{record.link2Man,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link2Tel != null">
+        LINK_2_TEL = #{record.link2Tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        REMARKS = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planGetManId != null">
+        PLAN_GET_MAN_ID = #{record.planGetManId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planGetManName != null">
+        PLAN_GET_MAN_NAME = #{record.planGetManName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planGetDate != null">
+        PLAN_GET_DATE = #{record.planGetDate,jdbcType=DATE},
+      </if>
+      <if test="record.createUserId != null">
+        CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null">
+        CREATE_USER_NAME = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserId != null">
+        UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserName != null">
+        UPDATE_USER_NAME = #{record.updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.areaName != null">
+        AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccName != null">
+        LCC_NAME = #{record.lccName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rccName != null">
+        RCC_NAME = #{record.rccName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PIP_SCM_TRANS_PROC_DETAIL
+    set ID = #{record.id,jdbcType=VARCHAR},
+    MASTER_ID = #{record.masterId,jdbcType=VARCHAR},
+    TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+    TRANS_DETAIL_NO = #{record.transDetailNo,jdbcType=VARCHAR},
+    AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+    RCC_CODE = #{record.rccCode,jdbcType=VARCHAR},
+    LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+    BOX_COUNT = #{record.boxCount,jdbcType=DECIMAL},
+    DETAIL_STATUS = #{record.detailStatus,jdbcType=DECIMAL},
+    LINK_1_MAN = #{record.link1Man,jdbcType=VARCHAR},
+    LINK_1_TEL = #{record.link1Tel,jdbcType=VARCHAR},
+    LINK_2_MAN = #{record.link2Man,jdbcType=VARCHAR},
+    LINK_2_TEL = #{record.link2Tel,jdbcType=VARCHAR},
+    REMARKS = #{record.remarks,jdbcType=VARCHAR},
+    PLAN_GET_MAN_ID = #{record.planGetManId,jdbcType=VARCHAR},
+    PLAN_GET_MAN_NAME = #{record.planGetManName,jdbcType=VARCHAR},
+    PLAN_GET_DATE = #{record.planGetDate,jdbcType=DATE},
+    CREATE_USER_ID = #{record.createUserId,jdbcType=VARCHAR},
+    CREATE_USER_NAME = #{record.createUserName,jdbcType=VARCHAR},
+    CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+    UPDATE_USER_ID = #{record.updateUserId,jdbcType=VARCHAR},
+    UPDATE_USER_NAME = #{record.updateUserName,jdbcType=VARCHAR},
+    UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+    AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+    LCC_NAME = #{record.lccName,jdbcType=VARCHAR},
+    RCC_NAME = #{record.rccName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetail">
+    update PIP_SCM_TRANS_PROC_DETAIL
+    <set>
+      <if test="masterId != null">
+        MASTER_ID = #{masterId,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null">
+        TRANS_NO = #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transDetailNo != null">
+        TRANS_DETAIL_NO = #{transDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rccCode != null">
+        RCC_CODE = #{rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null">
+        LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="boxCount != null">
+        BOX_COUNT = #{boxCount,jdbcType=DECIMAL},
+      </if>
+      <if test="detailStatus != null">
+        DETAIL_STATUS = #{detailStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="link1Man != null">
+        LINK_1_MAN = #{link1Man,jdbcType=VARCHAR},
+      </if>
+      <if test="link1Tel != null">
+        LINK_1_TEL = #{link1Tel,jdbcType=VARCHAR},
+      </if>
+      <if test="link2Man != null">
+        LINK_2_MAN = #{link2Man,jdbcType=VARCHAR},
+      </if>
+      <if test="link2Tel != null">
+        LINK_2_TEL = #{link2Tel,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="planGetManId != null">
+        PLAN_GET_MAN_ID = #{planGetManId,jdbcType=VARCHAR},
+      </if>
+      <if test="planGetManName != null">
+        PLAN_GET_MAN_NAME = #{planGetManName,jdbcType=VARCHAR},
+      </if>
+      <if test="planGetDate != null">
+        PLAN_GET_DATE = #{planGetDate,jdbcType=DATE},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        CREATE_USER_NAME = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        UPDATE_USER_NAME = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaName != null">
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="lccName != null">
+        LCC_NAME = #{lccName,jdbcType=VARCHAR},
+      </if>
+      <if test="rccName != null">
+        RCC_NAME = #{rccName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetail">
+    update PIP_SCM_TRANS_PROC_DETAIL
+    set MASTER_ID = #{masterId,jdbcType=VARCHAR},
+      TRANS_NO = #{transNo,jdbcType=VARCHAR},
+      TRANS_DETAIL_NO = #{transDetailNo,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      RCC_CODE = #{rccCode,jdbcType=VARCHAR},
+      LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+      BOX_COUNT = #{boxCount,jdbcType=DECIMAL},
+      DETAIL_STATUS = #{detailStatus,jdbcType=DECIMAL},
+      LINK_1_MAN = #{link1Man,jdbcType=VARCHAR},
+      LINK_1_TEL = #{link1Tel,jdbcType=VARCHAR},
+      LINK_2_MAN = #{link2Man,jdbcType=VARCHAR},
+      LINK_2_TEL = #{link2Tel,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      PLAN_GET_MAN_ID = #{planGetManId,jdbcType=VARCHAR},
+      PLAN_GET_MAN_NAME = #{planGetManName,jdbcType=VARCHAR},
+      PLAN_GET_DATE = #{planGetDate,jdbcType=DATE},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      CREATE_USER_NAME = #{createUserName,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+      UPDATE_USER_NAME = #{updateUserName,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      LCC_NAME = #{lccName,jdbcType=VARCHAR},
+      RCC_NAME = #{rccName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--自定义 sql 开始-->
+  <select id="selectByFilter" parameterType="com.jet.scm.mobile.web.spem.filter.TransferDetailFilter"
+          resultType="com.jet.scm.mobile.web.spem.vo.TransferVO">
+    select d.LCC_NAME lccName,
+    d.LCC_CODE lccCode,
+    d.PLAN_GET_DATE planGetDate,
+    d.TRANS_DETAIL_NO transDetailNo,
+    m.REAL_GET_DATE realGetDate,
+    decode(m.ID,null,0,1) status
+    from PIP_SCM_TRANS_PROC_DETAIL d
+    left join SCM_MOBILE_TRANSFER_DETAIL m
+    on d.ID = m.TRANS_DETAIL_ID
+    where 1=1
+    <if test="status==0">
+      and m.ID is null
+    </if>
+    order by d.create_date desc
+  </select>
+</mapper>

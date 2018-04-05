@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.sys.mapper.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.sys.domain.SysMenu">
+    <id column="ID" property="id" jdbcType="VARCHAR"/>
+    <result column="BPID" property="bpid" jdbcType="VARCHAR"/>
+    <result column="MPID" property="mpid" jdbcType="VARCHAR"/>
+    <result column="NAME" property="name" jdbcType="VARCHAR"/>
+    <result column="ICON" property="icon" jdbcType="VARCHAR"/>
+    <result column="ROUTER" property="router" jdbcType="VARCHAR"/>
+    <result column="PERMISSION" property="permission" jdbcType="VARCHAR"/>
+    <result column="SEQUENCE" property="sequence" jdbcType="DECIMAL"/>
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP"/>
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR"/>
+    <result column="MENU_LEVEL" property="menuLevel" jdbcType="DECIMAL"/>
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, BPID, MPID, NAME, ICON, ROUTER, PERMISSION, SEQUENCE, CREATE_DATETIME, CREATE_USER, 
+    UPDATE_DATETIME, UPDATE_USER, MENU_LEVEL, HELP_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.sys.domain.SysMenuExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from SYS_MENU
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from SYS_MENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_MENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.sys.domain.SysMenuExample">
+    delete from SYS_MENU
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.sys.domain.SysMenu">
+    insert into SYS_MENU (ID, BPID, MPID, 
+      NAME, ICON, ROUTER, 
+      PERMISSION, SEQUENCE, CREATE_DATETIME, 
+      CREATE_USER, UPDATE_DATETIME, UPDATE_USER, 
+      MENU_LEVEL, HELP_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{bpid,jdbcType=VARCHAR}, #{mpid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{router,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=VARCHAR}, #{sequence,jdbcType=DECIMAL}, #{createDatetime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{menuLevel,jdbcType=DECIMAL}, #{helpCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.sys.domain.SysMenu">
+    insert into SYS_MENU
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="bpid != null">
+        BPID,
+      </if>
+      <if test="mpid != null">
+        MPID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="icon != null">
+        ICON,
+      </if>
+      <if test="router != null">
+        ROUTER,
+      </if>
+      <if test="permission != null">
+        PERMISSION,
+      </if>
+      <if test="sequence != null">
+        SEQUENCE,
+      </if>
+      <if test="createDatetime != null">
+        CREATE_DATETIME,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="updateDatetime != null">
+        UPDATE_DATETIME,
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER,
+      </if>
+      <if test="menuLevel != null">
+        MENU_LEVEL,
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bpid != null">
+        #{bpid,jdbcType=VARCHAR},
+      </if>
+      <if test="mpid != null">
+        #{mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="router != null">
+        #{router,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="createDatetime != null">
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevel != null">
+        #{menuLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="helpCode != null">
+        #{helpCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.sys.domain.SysMenuExample" resultType="java.lang.Integer">
+    select count(*) from SYS_MENU
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYS_MENU
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpid != null">
+        BPID = #{record.bpid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mpid != null">
+        MPID = #{record.mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        ICON = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.router != null">
+        ROUTER = #{record.router,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permission != null">
+        PERMISSION = #{record.permission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sequence != null">
+        SEQUENCE = #{record.sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createDatetime != null">
+        CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDatetime != null">
+        UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuLevel != null">
+        MENU_LEVEL = #{record.menuLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="record.helpCode != null">
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYS_MENU
+    set ID = #{record.id,jdbcType=VARCHAR},
+    BPID = #{record.bpid,jdbcType=VARCHAR},
+    MPID = #{record.mpid,jdbcType=VARCHAR},
+    NAME = #{record.name,jdbcType=VARCHAR},
+    ICON = #{record.icon,jdbcType=VARCHAR},
+    ROUTER = #{record.router,jdbcType=VARCHAR},
+    PERMISSION = #{record.permission,jdbcType=VARCHAR},
+    SEQUENCE = #{record.sequence,jdbcType=DECIMAL},
+    CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+    CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+    UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+    UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+    MENU_LEVEL = #{record.menuLevel,jdbcType=DECIMAL},
+    HELP_CODE = #{record.helpCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.sys.domain.SysMenu">
+    update SYS_MENU
+    <set>
+      <if test="bpid != null">
+        BPID = #{bpid,jdbcType=VARCHAR},
+      </if>
+      <if test="mpid != null">
+        MPID = #{mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="router != null">
+        ROUTER = #{router,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="createDatetime != null">
+        CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevel != null">
+        MENU_LEVEL = #{menuLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.sys.domain.SysMenu">
+    update SYS_MENU
+    set BPID = #{bpid,jdbcType=VARCHAR},
+      MPID = #{mpid,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      ROUTER = #{router,jdbcType=VARCHAR},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      MENU_LEVEL = #{menuLevel,jdbcType=DECIMAL},
+      HELP_CODE = #{helpCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--自定义sql-->
+  <select id="selectByFilter" resultMap="BaseResultMap" parameterType="com.jet.scm.web.sys.filter.MenuFilter">
+    select
+    <include refid="Base_Column_List"/>
+    from SYS_MENU
+  </select>
+</mapper>

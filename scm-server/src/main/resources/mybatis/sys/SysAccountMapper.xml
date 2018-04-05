@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.sys.mapper.SysAccountMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.sys.domain.SysAccount">
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="IS_ADMIN" property="isAdmin" jdbcType="DECIMAL" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="DATE" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="DATE" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="IS_DELETE" property="isDelete" jdbcType="DECIMAL" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="LCC_CODE" property="lccCode" jdbcType="VARCHAR" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="DECIMAL" />
+    <result column="TEL_NUMBER" property="telNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, LOGIN_NAME, PASSWORD, NAME, SALT, EMAIL, IS_ADMIN, ORGANIZATION_ID, STATUS, CREATE_USER,
+    CREATE_DATETIME, UPDATE_USER, UPDATE_DATETIME, REMARK, IS_DELETE, PROJECT_ID, LCC_CODE,
+    USER_CODE, HELP_CODE, SEX, TEL_NUMBER
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.sys.domain.SysAccountExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from SYS_ACCOUNT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from SYS_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.sys.domain.SysAccountExample">
+    delete from SYS_ACCOUNT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.sys.domain.SysAccount" >
+    insert into SYS_ACCOUNT (ID, LOGIN_NAME, PASSWORD,
+      NAME, SALT, EMAIL,
+      IS_ADMIN, ORGANIZATION_ID, STATUS,
+      CREATE_USER, CREATE_DATETIME, UPDATE_USER,
+      UPDATE_DATETIME, REMARK, IS_DELETE,
+      PROJECT_ID, LCC_CODE, USER_CODE,
+      HELP_CODE, SEX, TEL_NUMBER
+      )
+    values (#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{isAdmin,jdbcType=DECIMAL}, #{organizationId,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL},
+      #{createUser,jdbcType=VARCHAR}, #{createDatetime,jdbcType=DATE}, #{updateUser,jdbcType=VARCHAR},
+      #{updateDatetime,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, #{isDelete,jdbcType=DECIMAL},
+      #{projectId,jdbcType=VARCHAR}, #{lccCode,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR},
+      #{helpCode,jdbcType=VARCHAR}, #{sex,jdbcType=DECIMAL}, #{telNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.sys.domain.SysAccount">
+    insert into SYS_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="salt != null">
+        SALT,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="isAdmin != null">
+        IS_ADMIN,
+      </if>
+      <if test="organizationId != null">
+        ORGANIZATION_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createDatetime != null">
+        CREATE_DATETIME,
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER,
+      </if>
+      <if test="updateDatetime != null">
+        UPDATE_DATETIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE,
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID,
+      </if>
+      <if test="lccCode != null">
+        LCC_CODE,
+      </if>
+      <if test="userCode != null">
+        USER_CODE,
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="telNumber != null" >
+        TEL_NUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null">
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=DECIMAL},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null">
+        #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null">
+        #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="telNumber != null" >
+        #{telNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.sys.domain.SysAccountExample" resultType="java.lang.Integer">
+    select count(*) from SYS_ACCOUNT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYS_ACCOUNT
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginName != null">
+        LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null">
+        SALT = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAdmin != null">
+        IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.organizationId != null">
+        ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createUser != null">
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDatetime != null">
+        CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDatetime != null">
+        UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectId != null">
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccCode != null">
+        LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null">
+        USER_CODE = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpCode != null">
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        SEX = #{record.sex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.telNumber != null" >
+        TEL_NUMBER = #{record.telNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYS_ACCOUNT
+    set ID = #{record.id,jdbcType=VARCHAR},
+    LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+    PASSWORD = #{record.password,jdbcType=VARCHAR},
+    NAME = #{record.name,jdbcType=VARCHAR},
+    SALT = #{record.salt,jdbcType=VARCHAR},
+    EMAIL = #{record.email,jdbcType=VARCHAR},
+    IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+    ORGANIZATION_ID = #{record.organizationId,jdbcType=VARCHAR},
+    STATUS = #{record.status,jdbcType=DECIMAL},
+    CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+    CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+    UPDATE_USER = #{record.updateUser,jdbcType=VARCHAR},
+    UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+    REMARK = #{record.remark,jdbcType=VARCHAR},
+    IS_DELETE = #{record.isDelete,jdbcType=DECIMAL},
+    PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+    LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+    USER_CODE = #{record.userCode,jdbcType=VARCHAR},
+    HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+    SEX = #{record.sex,jdbcType=DECIMAL},
+    TEL_NUMBER = #{record.telNumber,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.sys.domain.SysAccount">
+    update SYS_ACCOUNT
+    <set>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null">
+        IS_ADMIN = #{isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="organizationId != null">
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null">
+        CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null">
+        UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null">
+        LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="telNumber != null" >
+        TEL_NUMBER = #{telNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.sys.domain.SysAccount">
+    update SYS_ACCOUNT
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+    PASSWORD = #{password,jdbcType=VARCHAR},
+    NAME = #{name,jdbcType=VARCHAR},
+    SALT = #{salt,jdbcType=VARCHAR},
+    EMAIL = #{email,jdbcType=VARCHAR},
+    IS_ADMIN = #{isAdmin,jdbcType=DECIMAL},
+    ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+    STATUS = #{status,jdbcType=DECIMAL},
+    CREATE_USER = #{createUser,jdbcType=VARCHAR},
+    CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+    UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+    UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+    REMARK = #{remark,jdbcType=VARCHAR},
+    IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+    PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+    LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+    USER_CODE = #{userCode,jdbcType=VARCHAR},
+    HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+    SEX = #{sex,jdbcType=DECIMAL},
+    TEL_NUMBER = #{telNumber,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--自定义sql-->
+  <resultMap id="RoleResultMap" type="com.jet.scm.web.sys.vo.SysAccountVO" extends="BaseResultMap"/>
+
+  <select id="selectByFilter" resultMap="RoleResultMap" parameterType="com.jet.scm.web.sys.filter.AccountFilter">
+    SELECT
+    a.*,
+    ars.roleIds,
+    ars.roleNames
+    FROM SYS_ACCOUNT a
+    LEFT JOIN (
+    SELECT
+    ar.ACCOUNT_ID,
+    listagg(r.NAME, ',') WITHIN GROUP (ORDER BY r.ID) roleNames,
+    listagg(r.ID, ',') WITHIN GROUP (ORDER BY r.ID) roleIds
+    FROM SYS_ACCOUNT_ROLE ar
+    LEFT JOIN SYS_ROLE r
+    ON ar.ROLE_ID = r.ID
+    GROUP BY ar.ACCOUNT_ID
+    ) ars
+    ON a.ID = ars.ACCOUNT_ID
+    WHERE 1=1
+    <if test="searchId !=null and searchId != ''">
+      and a.ID = #{searchId}
+    </if>
+  </select>
+</mapper>

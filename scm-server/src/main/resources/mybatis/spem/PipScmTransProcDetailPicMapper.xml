@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.spem.mapper.PipScmTransProcDetailPicMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.spem.domain.PipScmTransProcDetailPic">
+    <id column="ID" property="id" jdbcType="VARCHAR"/>
+    <result column="TRANS_ID" property="transId" jdbcType="VARCHAR"/>
+    <result column="DETAIL_ID" property="detailId" jdbcType="VARCHAR"/>
+    <result column="SRC_FILE_NAME" property="srcFileName" jdbcType="VARCHAR"/>
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR"/>
+    <result column="FILE_PATH" property="filePath" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TRANS_ID, DETAIL_ID, SRC_FILE_NAME, FILE_NAME, FILE_PATH, CREATE_TIME, CREATE_BY,
+    UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPicExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL_PIC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL_PIC
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PIP_SCM_TRANS_PROC_DETAIL_PIC
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPicExample">
+    delete from PIP_SCM_TRANS_PROC_DETAIL_PIC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPic">
+    insert into PIP_SCM_TRANS_PROC_DETAIL_PIC (ID, TRANS_ID, DETAIL_ID,
+    SRC_FILE_NAME, FILE_NAME, FILE_PATH,
+    CREATE_TIME, CREATE_BY, UPDATE_TIME,
+    UPDATE_BY)
+    values (#{id,jdbcType=VARCHAR}, #{transId,jdbcType=VARCHAR}, #{detailId,jdbcType=VARCHAR},
+    #{srcFileName,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+    #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPic">
+    insert into PIP_SCM_TRANS_PROC_DETAIL_PIC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="transId != null">
+        TRANS_ID,
+      </if>
+      <if test="detailId != null">
+        DETAIL_ID,
+      </if>
+      <if test="srcFileName != null">
+        SRC_FILE_NAME,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailId != null">
+        #{detailId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcFileName != null">
+        #{srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPicExample" resultType="java.lang.Integer">
+    select count(*) from PIP_SCM_TRANS_PROC_DETAIL_PIC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PIP_SCM_TRANS_PROC_DETAIL_PIC
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transId != null">
+        TRANS_ID = #{record.transId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailId != null">
+        DETAIL_ID = #{record.detailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcFileName != null">
+        SRC_FILE_NAME = #{record.srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null">
+        FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filePath != null">
+        FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PIP_SCM_TRANS_PROC_DETAIL_PIC
+    set ID = #{record.id,jdbcType=VARCHAR},
+    TRANS_ID = #{record.transId,jdbcType=VARCHAR},
+    DETAIL_ID = #{record.detailId,jdbcType=VARCHAR},
+    SRC_FILE_NAME = #{record.srcFileName,jdbcType=VARCHAR},
+    FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+    FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+    CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+    CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPic">
+    update PIP_SCM_TRANS_PROC_DETAIL_PIC
+    <set>
+      <if test="transId != null">
+        TRANS_ID = #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailId != null">
+        DETAIL_ID = #{detailId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcFileName != null">
+        SRC_FILE_NAME = #{srcFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailPic">
+    update PIP_SCM_TRANS_PROC_DETAIL_PIC
+    set TRANS_ID = #{transId,jdbcType=VARCHAR},
+    DETAIL_ID = #{detailId,jdbcType=VARCHAR},
+    SRC_FILE_NAME = #{srcFileName,jdbcType=VARCHAR},
+    FILE_NAME = #{fileName,jdbcType=VARCHAR},
+    FILE_PATH = #{filePath,jdbcType=VARCHAR},
+    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+    CREATE_BY = #{createBy,jdbcType=VARCHAR},
+    UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.common.mapper.SysParameterMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.common.domain.SysParameter">
+    <id column="ID" property="id" jdbcType="DECIMAL"/>
+    <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+    <result column="CODE" property="code" jdbcType="VARCHAR"/>
+    <result column="VALUE" property="value" jdbcType="VARCHAR"/>
+    <result column="IS_VALID" property="isValid" jdbcType="DECIMAL"/>
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="VARCHAR"/>
+    <result column="SEQUENCE" property="sequence" jdbcType="DECIMAL"/>
+    <result column="PARENT_CODE" property="parentCode" jdbcType="VARCHAR"/>
+    <result column="PARATYPE_NAME" property="paratypeName" jdbcType="VARCHAR"/>
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE"/>
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE"/>
+    <result column="VERSION" property="version" jdbcType="DECIMAL"/>
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR"/>
+    <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TYPE, CODE, VALUE, IS_VALID, IS_DEFAULT, SEQUENCE, PARENT_CODE, PARATYPE_NAME,
+    CREATE_BY, CREATE_DATE, UPDATE_BY, UPDATE_DATE, VERSION, HELP_CODE, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.common.domain.SysParameterExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from SYS_PARAMETER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from SYS_PARAMETER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SYS_PARAMETER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.common.domain.SysParameterExample">
+    delete from SYS_PARAMETER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.common.domain.SysParameter">
+    insert into SYS_PARAMETER (ID, TYPE, CODE,
+    VALUE, IS_VALID, IS_DEFAULT,
+    SEQUENCE, PARENT_CODE, PARATYPE_NAME,
+    CREATE_BY, CREATE_DATE, UPDATE_BY,
+    UPDATE_DATE, VERSION, HELP_CODE,
+    REMARK)
+    values (#{id,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+    #{value,jdbcType=VARCHAR}, #{isValid,jdbcType=DECIMAL}, #{isDefault,jdbcType=VARCHAR},
+    #{sequence,jdbcType=DECIMAL}, #{parentCode,jdbcType=VARCHAR}, #{paratypeName,jdbcType=VARCHAR},
+    #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{updateBy,jdbcType=VARCHAR},
+    #{updateDate,jdbcType=DATE}, #{version,jdbcType=DECIMAL}, #{helpCode,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.common.domain.SysParameter">
+    insert into SYS_PARAMETER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="value != null">
+        VALUE,
+      </if>
+      <if test="isValid != null">
+        IS_VALID,
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT,
+      </if>
+      <if test="sequence != null">
+        SEQUENCE,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="paratypeName != null">
+        PARATYPE_NAME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=DECIMAL},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paratypeName != null">
+        #{paratypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="helpCode != null">
+        #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.common.domain.SysParameterExample" resultType="java.lang.Integer">
+    select count(*) from SYS_PARAMETER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYS_PARAMETER
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null">
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.value != null">
+        VALUE = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isValid != null">
+        IS_VALID = #{record.isValid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isDefault != null">
+        IS_DEFAULT = #{record.isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sequence != null">
+        SEQUENCE = #{record.sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="record.parentCode != null">
+        PARENT_CODE = #{record.parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paratypeName != null">
+        PARATYPE_NAME = #{record.paratypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        UPDATE_DATE = #{record.updateDate,jdbcType=DATE},
+      </if>
+      <if test="record.version != null">
+        VERSION = #{record.version,jdbcType=DECIMAL},
+      </if>
+      <if test="record.helpCode != null">
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYS_PARAMETER
+    set ID = #{record.id,jdbcType=DECIMAL},
+    TYPE = #{record.type,jdbcType=VARCHAR},
+    CODE = #{record.code,jdbcType=VARCHAR},
+    VALUE = #{record.value,jdbcType=VARCHAR},
+    IS_VALID = #{record.isValid,jdbcType=DECIMAL},
+    IS_DEFAULT = #{record.isDefault,jdbcType=VARCHAR},
+    SEQUENCE = #{record.sequence,jdbcType=DECIMAL},
+    PARENT_CODE = #{record.parentCode,jdbcType=VARCHAR},
+    PARATYPE_NAME = #{record.paratypeName,jdbcType=VARCHAR},
+    CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+    CREATE_DATE = #{record.createDate,jdbcType=DATE},
+    UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+    UPDATE_DATE = #{record.updateDate,jdbcType=DATE},
+    VERSION = #{record.version,jdbcType=DECIMAL},
+    HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+    REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.common.domain.SysParameter">
+    update SYS_PARAMETER
+    <set>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        IS_VALID = #{isValid,jdbcType=DECIMAL},
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paratypeName != null">
+        PARATYPE_NAME = #{paratypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="helpCode != null">
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.common.domain.SysParameter">
+    update SYS_PARAMETER
+    set TYPE = #{type,jdbcType=VARCHAR},
+    CODE = #{code,jdbcType=VARCHAR},
+    VALUE = #{value,jdbcType=VARCHAR},
+    IS_VALID = #{isValid,jdbcType=DECIMAL},
+    IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+    SEQUENCE = #{sequence,jdbcType=DECIMAL},
+    PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+    PARATYPE_NAME = #{paratypeName,jdbcType=VARCHAR},
+    CREATE_BY = #{createBy,jdbcType=VARCHAR},
+    CREATE_DATE = #{createDate,jdbcType=DATE},
+    UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+    UPDATE_DATE = #{updateDate,jdbcType=DATE},
+    VERSION = #{version,jdbcType=DECIMAL},
+    HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+    REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

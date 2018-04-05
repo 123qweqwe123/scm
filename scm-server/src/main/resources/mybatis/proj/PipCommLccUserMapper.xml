@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.proj.mapper.PipCommLccUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.proj.domain.PipCommLccUser" >
+    <id column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <id column="LCC_CODE" property="lccCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="LCC_ROLE" property="lccRole" jdbcType="VARCHAR" />
+    <result column="IS_SIGN_SIGNA" property="isSignSigna" jdbcType="CHAR" />
+    <result column="IS_GET_RESUME" property="isGetResume" jdbcType="CHAR" />
+    <result column="IS_JOIN_TRAINING" property="isJoinTraining" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="ADDTOLINKMAN" property="addtolinkman" jdbcType="CHAR" />
+    <result column="LINKMAN_CODE" property="linkmanCode" jdbcType="VARCHAR" />
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR" />
+    <result column="GENDER" property="gender" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="MAJOR" property="major" jdbcType="VARCHAR" />
+    <result column="DUTY" property="duty" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_CODE, PROJECT_ID, LCC_CODE, NAME, PHONE, EMAIL, LCC_ROLE, IS_SIGN_SIGNA, IS_GET_RESUME, 
+    IS_JOIN_TRAINING, STATUS, MOBILE, ADDTOLINKMAN, LINKMAN_CODE, HELP_CODE, GENDER, 
+    DEPARTMENT, MAJOR, DUTY, BIRTHDAY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.proj.domain.PipCommLccUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_COMM_LCC_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.scm.web.proj.domain.PipCommLccUserKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_COMM_LCC_USER
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.jet.scm.web.proj.domain.PipCommLccUserKey" >
+    delete from PIP_COMM_LCC_USER
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.proj.domain.PipCommLccUserExample" >
+    delete from PIP_COMM_LCC_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.proj.domain.PipCommLccUser" >
+    insert into PIP_COMM_LCC_USER (USER_CODE, PROJECT_ID, LCC_CODE, 
+      NAME, PHONE, EMAIL, 
+      LCC_ROLE, IS_SIGN_SIGNA, IS_GET_RESUME, 
+      IS_JOIN_TRAINING, STATUS, MOBILE, 
+      ADDTOLINKMAN, LINKMAN_CODE, HELP_CODE, 
+      GENDER, DEPARTMENT, MAJOR, 
+      DUTY, BIRTHDAY)
+    values (#{userCode,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{lccCode,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{lccRole,jdbcType=VARCHAR}, #{isSignSigna,jdbcType=CHAR}, #{isGetResume,jdbcType=CHAR}, 
+      #{isJoinTraining,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{addtolinkman,jdbcType=CHAR}, #{linkmanCode,jdbcType=VARCHAR}, #{helpCode,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{duty,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.proj.domain.PipCommLccUser" >
+    insert into PIP_COMM_LCC_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="lccCode != null" >
+        LCC_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="lccRole != null" >
+        LCC_ROLE,
+      </if>
+      <if test="isSignSigna != null" >
+        IS_SIGN_SIGNA,
+      </if>
+      <if test="isGetResume != null" >
+        IS_GET_RESUME,
+      </if>
+      <if test="isJoinTraining != null" >
+        IS_JOIN_TRAINING,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="addtolinkman != null" >
+        ADDTOLINKMAN,
+      </if>
+      <if test="linkmanCode != null" >
+        LINKMAN_CODE,
+      </if>
+      <if test="helpCode != null" >
+        HELP_CODE,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="major != null" >
+        MAJOR,
+      </if>
+      <if test="duty != null" >
+        DUTY,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null" >
+        #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="lccRole != null" >
+        #{lccRole,jdbcType=VARCHAR},
+      </if>
+      <if test="isSignSigna != null" >
+        #{isSignSigna,jdbcType=CHAR},
+      </if>
+      <if test="isGetResume != null" >
+        #{isGetResume,jdbcType=CHAR},
+      </if>
+      <if test="isJoinTraining != null" >
+        #{isJoinTraining,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addtolinkman != null" >
+        #{addtolinkman,jdbcType=CHAR},
+      </if>
+      <if test="linkmanCode != null" >
+        #{linkmanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null" >
+        #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.proj.domain.PipCommLccUserExample" resultType="java.lang.Integer" >
+    select count(*) from PIP_COMM_LCC_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PIP_COMM_LCC_USER
+    <set >
+      <if test="record.userCode != null" >
+        USER_CODE = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccCode != null" >
+        LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccRole != null" >
+        LCC_ROLE = #{record.lccRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSignSigna != null" >
+        IS_SIGN_SIGNA = #{record.isSignSigna,jdbcType=CHAR},
+      </if>
+      <if test="record.isGetResume != null" >
+        IS_GET_RESUME = #{record.isGetResume,jdbcType=CHAR},
+      </if>
+      <if test="record.isJoinTraining != null" >
+        IS_JOIN_TRAINING = #{record.isJoinTraining,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.mobile != null" >
+        MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addtolinkman != null" >
+        ADDTOLINKMAN = #{record.addtolinkman,jdbcType=CHAR},
+      </if>
+      <if test="record.linkmanCode != null" >
+        LINKMAN_CODE = #{record.linkmanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpCode != null" >
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        GENDER = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null" >
+        MAJOR = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duty != null" >
+        DUTY = #{record.duty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        BIRTHDAY = #{record.birthday,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PIP_COMM_LCC_USER
+    set USER_CODE = #{record.userCode,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      LCC_ROLE = #{record.lccRole,jdbcType=VARCHAR},
+      IS_SIGN_SIGNA = #{record.isSignSigna,jdbcType=CHAR},
+      IS_GET_RESUME = #{record.isGetResume,jdbcType=CHAR},
+      IS_JOIN_TRAINING = #{record.isJoinTraining,jdbcType=CHAR},
+      STATUS = #{record.status,jdbcType=CHAR},
+      MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      ADDTOLINKMAN = #{record.addtolinkman,jdbcType=CHAR},
+      LINKMAN_CODE = #{record.linkmanCode,jdbcType=VARCHAR},
+      HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      GENDER = #{record.gender,jdbcType=VARCHAR},
+      DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      MAJOR = #{record.major,jdbcType=VARCHAR},
+      DUTY = #{record.duty,jdbcType=VARCHAR},
+      BIRTHDAY = #{record.birthday,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.proj.domain.PipCommLccUser" >
+    update PIP_COMM_LCC_USER
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="lccRole != null" >
+        LCC_ROLE = #{lccRole,jdbcType=VARCHAR},
+      </if>
+      <if test="isSignSigna != null" >
+        IS_SIGN_SIGNA = #{isSignSigna,jdbcType=CHAR},
+      </if>
+      <if test="isGetResume != null" >
+        IS_GET_RESUME = #{isGetResume,jdbcType=CHAR},
+      </if>
+      <if test="isJoinTraining != null" >
+        IS_JOIN_TRAINING = #{isJoinTraining,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addtolinkman != null" >
+        ADDTOLINKMAN = #{addtolinkman,jdbcType=CHAR},
+      </if>
+      <if test="linkmanCode != null" >
+        LINKMAN_CODE = #{linkmanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="helpCode != null" >
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        DUTY = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+    </set>
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.proj.domain.PipCommLccUser" >
+    update PIP_COMM_LCC_USER
+    set NAME = #{name,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      LCC_ROLE = #{lccRole,jdbcType=VARCHAR},
+      IS_SIGN_SIGNA = #{isSignSigna,jdbcType=CHAR},
+      IS_GET_RESUME = #{isGetResume,jdbcType=CHAR},
+      IS_JOIN_TRAINING = #{isJoinTraining,jdbcType=CHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      ADDTOLINKMAN = #{addtolinkman,jdbcType=CHAR},
+      LINKMAN_CODE = #{linkmanCode,jdbcType=VARCHAR},
+      HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      MAJOR = #{major,jdbcType=VARCHAR},
+      DUTY = #{duty,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=DATE}
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

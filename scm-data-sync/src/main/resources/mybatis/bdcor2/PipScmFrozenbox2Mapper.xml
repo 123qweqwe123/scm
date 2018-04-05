@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.datasync.bdcor2.mapper.PipScmFrozenbox2Mapper" >
+  <resultMap id="BaseResultMap" type="com.jet.datasync.bdcor2.domain.PipScmFrozenbox2" >
+    <id column="BOX_CODE" property="boxCode" jdbcType="VARCHAR" />
+    <id column="BOX_TYPE" property="boxType" jdbcType="VARCHAR" />
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="FRIDGE_ID" property="fridgeId" jdbcType="VARCHAR" />
+    <result column="BOX_STATE" property="boxState" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="IS_CHECKIN" property="isCheckin" jdbcType="DECIMAL" />
+    <result column="CHECKINLIST_ID" property="checkinlistId" jdbcType="VARCHAR" />
+    <result column="LCC_CODE" property="lccCode" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BOX_CODE, BOX_TYPE, PROJECT_ID, FRIDGE_ID, BOX_STATE, REMARK, IS_CHECKIN, CHECKINLIST_ID, 
+    LCC_CODE, CREATE_DATE, CREATE_BY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor2.domain.PipScmFrozenbox2Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_SCM_FROZENBOX
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor2.domain.PipScmFrozenbox2Key" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_SCM_FROZENBOX
+    where BOX_CODE = #{boxCode,jdbcType=VARCHAR}
+      and BOX_TYPE = #{boxType,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.datasync.bdcor2.domain.PipScmFrozenbox2Example" resultType="java.lang.Integer" >
+    select count(*) from PIP_SCM_FROZENBOX
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

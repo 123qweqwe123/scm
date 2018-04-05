@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.spem.mapper.PipScmTransLogMapper">
+  <insert id="insert" parameterType="com.jet.scm.web.spem.domain.PipScmTransLog">
+    insert into PIP_SCM_TRANS_LOG (ID, TYPE, TRANS_ID,
+    TRANS_DETAIL_ID, CREATE_TIME, CREATE_BY,
+    CONTENT)
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL}, #{transId,jdbcType=VARCHAR},
+    #{transDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+    #{content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.spem.domain.PipScmTransLog">
+    insert into PIP_SCM_TRANS_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="transId != null">
+        TRANS_ID,
+      </if>
+      <if test="transDetailId != null">
+        TRANS_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="transDetailId != null">
+        #{transDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

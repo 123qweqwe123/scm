@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+option java_package = "com.jet.datasync.bdcor2.proto";
+option java_outer_classname = "PipScmFrozentubeProtos";
+
+message TransPipScmFrozentubes {
+
+    repeated PipScmFrozentube pipScmFrozentubes = 1;
+
+    message PipScmFrozentube {
+        required string project_id = 1;
+        required string tube_code = 2;
+        required string tube_type = 3;
+        required string box_code = 4;
+        required string box_type = 5;
+        required int32 box_colno = 6;
+        required int32 box_rowno = 7;
+        required string blood_code = 8;
+        optional int64 create_date = 9;
+        optional string create_by = 10;
+        optional string remark = 11;
+        optional int32 is_hemolysis = 12 [default = 2];
+        optional int32 is_lipid = 13 [default = 2];
+        required string lcc_code = 14;
+        optional int32 is_empty = 15;
+        optional string file_name = 16;
+        optional string terminal_id = 17;
+    }
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jet.scm.mobile.web.spem.mapper.PipScmTransProcDetailBoxMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetailBox">
+    <id column="ID" jdbcType="VARCHAR" property="id"/>
+    <result column="TRANS_ID" jdbcType="VARCHAR" property="transId"/>
+    <result column="TRANS_NO" jdbcType="VARCHAR" property="transNo"/>
+    <result column="TRANS_DETAIL_NO" jdbcType="VARCHAR" property="transDetailNo"/>
+    <result column="BOX_CODE" jdbcType="VARCHAR" property="boxCode"/>
+    <result column="BOX_TYPE" jdbcType="VARCHAR" property="boxType"/>
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy"/>
+    <result column="CREATE_BY_NAME" jdbcType="VARCHAR" property="createByName"/>
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy"/>
+    <result column="UPDATE_BY_NAME" jdbcType="VARCHAR" property="updateByName"/>
+    <result column="TRANS_DETAIL_ID" jdbcType="VARCHAR" property="transDetailId"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TRANS_ID, TRANS_NO, TRANS_DETAIL_NO, BOX_CODE, BOX_TYPE, CREATE_TIME, CREATE_BY, 
+    CREATE_BY_NAME, UPDATE_TIME, UPDATE_BY, UPDATE_BY_NAME, TRANS_DETAIL_ID
+  </sql>
+  <select id="selectByExample" parameterType="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetailBoxExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL_BOX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL_BOX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.scm.mobile.web.spem.domain.PipScmTransProcDetailBoxExample" resultType="java.lang.Long">
+    select count(*) from PIP_SCM_TRANS_PROC_DETAIL_BOX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+</mapper>

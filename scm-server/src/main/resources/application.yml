@@ -1,0 +1,101 @@
+---
+spring:
+  profiles:
+    active: development
+  datasource:
+    driver-class-name:  oracle.jdbc.OracleDriver
+    druid:
+      filters: wall,stat,slf4j
+      poolPreparedStatements: true
+      stat-view-servlet:
+        login-username: scm
+        login-password: SCM@druid
+  cache:
+    caffeine:
+      spec: maximumSize=3000,expireAfterAccess=1d
+    cache-names: param
+  http:
+    multipart:
+      max-file-size: 20mb
+      max-request-size: 20mb
+server:
+  error:
+      whitelabel:
+        enabled: false
+  port: 7000
+  session:
+    timeout: 1800
+mybatis:
+  mapper-locations: classpath:/mybatis/**/*Mapper.xml
+pagehelper:
+  support-methods-arguments: true
+  params: pageNum=page
+Props:
+  # 错误编码字典对应的dictCode
+  bioErrCode-dictCode: tube.error
+  # 需要管理补丁包版本的dictType
+  dictVersion-dictTypes: 5,8
+
+--- # 开发配置定义
+
+spring:
+  profiles: development
+  datasource:
+    url:  jdbc:oracle:thin:@10.24.10.224:1521:bdcor5
+    username: scm
+    password: develop
+
+third-service:
+  fastdfs:
+    tracker-servers: 10.24.10.225:22122
+  sms:
+    msg-server-ip: 10.24.10.191
+    msg-server-port: 3212
+    msg-server-subcode: 03
+    msg-reply-ip: 10.24.10.11
+    msg-reply-port: 12302
+    msg-send-status-ip: 10.24.10.11
+    msg-send-status-port: 12303
+    msg-sign: 高危筛查项目组
+  mail:
+    server-request-url: http://10.24.10.225:8080/mail-service/service/mail/send
+  data-sync:
+    active: true # 是否启动数据同步服务 默认 true
+    key: 1024
+    host-port: 10.24.10.174:8912
+    login:
+      username: jjddh
+      password: 1jcsxdl@mqDlf
+server:
+  port: 7000
+
+--- # 生产配置定义
+
+spring:
+  profiles: production
+  datasource:
+    url: jdbc:oracle:thin:@10.24.10.34:1521:jtbiobank
+    username: scm
+    password: ncrc@2017
+third-service:
+  fastdfs:
+    tracker-servers: 10.24.10.12:22122
+  sms:
+    msg-server-ip: 172.31.201.181
+    msg-server-port: 3212
+    msg-server-subcode: 03
+    msg-reply-ip: 172.31.31.63
+    msg-reply-port: 12302
+    msg-send-status-ip: 172.31.31.63
+    msg-send-status-port: 12303
+    msg-sign: 高危筛查项目组
+  mail:
+    server-request-url: http://10.24.10.225:8080/mail-service/service/mail/send
+  data-sync:
+    key: 1024
+    host-port: 10.24.10.16:8912
+    login:
+      username: jjddh
+      password: 1jcsxdl@mqDlf
+server:
+  port: 7000

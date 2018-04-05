@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jet.scm.web.spem.mapper.PipScmFrozenboxMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.spem.domain.PipScmFrozenbox">
+    <id column="BOX_CODE" jdbcType="VARCHAR" property="boxCode" />
+    <id column="BOX_TYPE" jdbcType="VARCHAR" property="boxType" />
+    <id column="PROJECT_ID" jdbcType="VARCHAR" property="projectId" />
+    <result column="FRIDGE_ID" jdbcType="VARCHAR" property="fridgeId" />
+    <result column="BOX_STATE" jdbcType="DECIMAL" property="boxState" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="IS_CHECKIN" jdbcType="DECIMAL" property="isCheckin" />
+    <result column="CHECKINLIST_ID" jdbcType="VARCHAR" property="checkinlistId" />
+    <result column="LCC_CODE" jdbcType="VARCHAR" property="lccCode" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_BY" jdbcType="VARCHAR" property="createBy" />
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="VERSION" jdbcType="VARCHAR" property="version" />
+    <result column="CLIENT_ID" jdbcType="VARCHAR" property="clientId" />
+    <result column="UPDATE_FLAG" jdbcType="DECIMAL" property="updateFlag" />
+    <result column="HR3_UPDATE_DATE" jdbcType="TIMESTAMP" property="hr3UpdateDate" />
+    <result column="TRANS_DATE" jdbcType="TIMESTAMP" property="transDate" />
+    <result column="MPP" jdbcType="VARCHAR" property="mpp" />
+    <result column="TRANS_DATE_FROM_MPP" jdbcType="TIMESTAMP" property="transDateFromMpp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    BOX_CODE, BOX_TYPE, PROJECT_ID, FRIDGE_ID, BOX_STATE, REMARK, IS_CHECKIN, CHECKINLIST_ID, 
+    LCC_CODE, CREATE_DATE, CREATE_BY, ID, VERSION, CLIENT_ID, UPDATE_FLAG, HR3_UPDATE_DATE, 
+    TRANS_DATE, MPP, TRANS_DATE_FROM_MPP
+  </sql>
+  <select id="selectByExample" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenboxExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_SCM_FROZENBOX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenboxKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_SCM_FROZENBOX
+    where BOX_CODE = #{boxCode,jdbcType=VARCHAR}
+      and BOX_TYPE = #{boxType,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenboxKey">
+    delete from PIP_SCM_FROZENBOX
+    where BOX_CODE = #{boxCode,jdbcType=VARCHAR}
+      and BOX_TYPE = #{boxType,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenboxExample">
+    delete from PIP_SCM_FROZENBOX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenbox">
+    insert into PIP_SCM_FROZENBOX (BOX_CODE, BOX_TYPE, PROJECT_ID, 
+      FRIDGE_ID, BOX_STATE, REMARK, 
+      IS_CHECKIN, CHECKINLIST_ID, LCC_CODE, 
+      CREATE_DATE, CREATE_BY, ID, 
+      VERSION, CLIENT_ID, UPDATE_FLAG, 
+      HR3_UPDATE_DATE, TRANS_DATE, MPP, 
+      TRANS_DATE_FROM_MPP)
+    values (#{boxCode,jdbcType=VARCHAR}, #{boxType,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{fridgeId,jdbcType=VARCHAR}, #{boxState,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{isCheckin,jdbcType=DECIMAL}, #{checkinlistId,jdbcType=VARCHAR}, #{lccCode,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, 
+      #{version,jdbcType=VARCHAR}, #{clientId,jdbcType=VARCHAR}, #{updateFlag,jdbcType=DECIMAL}, 
+      #{hr3UpdateDate,jdbcType=TIMESTAMP}, #{transDate,jdbcType=TIMESTAMP}, #{mpp,jdbcType=VARCHAR}, 
+      #{transDateFromMpp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenbox">
+    insert into PIP_SCM_FROZENBOX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="boxCode != null">
+        BOX_CODE,
+      </if>
+      <if test="boxType != null">
+        BOX_TYPE,
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID,
+      </if>
+      <if test="fridgeId != null">
+        FRIDGE_ID,
+      </if>
+      <if test="boxState != null">
+        BOX_STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="isCheckin != null">
+        IS_CHECKIN,
+      </if>
+      <if test="checkinlistId != null">
+        CHECKINLIST_ID,
+      </if>
+      <if test="lccCode != null">
+        LCC_CODE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="clientId != null">
+        CLIENT_ID,
+      </if>
+      <if test="updateFlag != null">
+        UPDATE_FLAG,
+      </if>
+      <if test="hr3UpdateDate != null">
+        HR3_UPDATE_DATE,
+      </if>
+      <if test="transDate != null">
+        TRANS_DATE,
+      </if>
+      <if test="mpp != null">
+        MPP,
+      </if>
+      <if test="transDateFromMpp != null">
+        TRANS_DATE_FROM_MPP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="boxCode != null">
+        #{boxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="boxType != null">
+        #{boxType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="fridgeId != null">
+        #{fridgeId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxState != null">
+        #{boxState,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheckin != null">
+        #{isCheckin,jdbcType=DECIMAL},
+      </if>
+      <if test="checkinlistId != null">
+        #{checkinlistId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null">
+        #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null">
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateFlag != null">
+        #{updateFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="hr3UpdateDate != null">
+        #{hr3UpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transDate != null">
+        #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mpp != null">
+        #{mpp,jdbcType=VARCHAR},
+      </if>
+      <if test="transDateFromMpp != null">
+        #{transDateFromMpp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenboxExample" resultType="java.lang.Long">
+    select count(*) from PIP_SCM_FROZENBOX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PIP_SCM_FROZENBOX
+    <set>
+      <if test="record.boxCode != null">
+        BOX_CODE = #{record.boxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boxType != null">
+        BOX_TYPE = #{record.boxType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null">
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fridgeId != null">
+        FRIDGE_ID = #{record.fridgeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boxState != null">
+        BOX_STATE = #{record.boxState,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCheckin != null">
+        IS_CHECKIN = #{record.isCheckin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.checkinlistId != null">
+        CHECKINLIST_ID = #{record.checkinlistId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccCode != null">
+        LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null">
+        VERSION = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientId != null">
+        CLIENT_ID = #{record.clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateFlag != null">
+        UPDATE_FLAG = #{record.updateFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hr3UpdateDate != null">
+        HR3_UPDATE_DATE = #{record.hr3UpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transDate != null">
+        TRANS_DATE = #{record.transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mpp != null">
+        MPP = #{record.mpp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDateFromMpp != null">
+        TRANS_DATE_FROM_MPP = #{record.transDateFromMpp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PIP_SCM_FROZENBOX
+    set BOX_CODE = #{record.boxCode,jdbcType=VARCHAR},
+      BOX_TYPE = #{record.boxType,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      FRIDGE_ID = #{record.fridgeId,jdbcType=VARCHAR},
+      BOX_STATE = #{record.boxState,jdbcType=DECIMAL},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      IS_CHECKIN = #{record.isCheckin,jdbcType=DECIMAL},
+      CHECKINLIST_ID = #{record.checkinlistId,jdbcType=VARCHAR},
+      LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=VARCHAR},
+      CLIENT_ID = #{record.clientId,jdbcType=VARCHAR},
+      UPDATE_FLAG = #{record.updateFlag,jdbcType=DECIMAL},
+      HR3_UPDATE_DATE = #{record.hr3UpdateDate,jdbcType=TIMESTAMP},
+      TRANS_DATE = #{record.transDate,jdbcType=TIMESTAMP},
+      MPP = #{record.mpp,jdbcType=VARCHAR},
+      TRANS_DATE_FROM_MPP = #{record.transDateFromMpp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenbox">
+    update PIP_SCM_FROZENBOX
+    <set>
+      <if test="fridgeId != null">
+        FRIDGE_ID = #{fridgeId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxState != null">
+        BOX_STATE = #{boxState,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheckin != null">
+        IS_CHECKIN = #{isCheckin,jdbcType=DECIMAL},
+      </if>
+      <if test="checkinlistId != null">
+        CHECKINLIST_ID = #{checkinlistId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null">
+        LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        ID = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null">
+        CLIENT_ID = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateFlag != null">
+        UPDATE_FLAG = #{updateFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="hr3UpdateDate != null">
+        HR3_UPDATE_DATE = #{hr3UpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transDate != null">
+        TRANS_DATE = #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mpp != null">
+        MPP = #{mpp,jdbcType=VARCHAR},
+      </if>
+      <if test="transDateFromMpp != null">
+        TRANS_DATE_FROM_MPP = #{transDateFromMpp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BOX_CODE = #{boxCode,jdbcType=VARCHAR}
+      and BOX_TYPE = #{boxType,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.spem.domain.PipScmFrozenbox">
+    update PIP_SCM_FROZENBOX
+    set FRIDGE_ID = #{fridgeId,jdbcType=VARCHAR},
+      BOX_STATE = #{boxState,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      IS_CHECKIN = #{isCheckin,jdbcType=DECIMAL},
+      CHECKINLIST_ID = #{checkinlistId,jdbcType=VARCHAR},
+      LCC_CODE = #{lccCode,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      ID = #{id,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      CLIENT_ID = #{clientId,jdbcType=VARCHAR},
+      UPDATE_FLAG = #{updateFlag,jdbcType=DECIMAL},
+      HR3_UPDATE_DATE = #{hr3UpdateDate,jdbcType=TIMESTAMP},
+      TRANS_DATE = #{transDate,jdbcType=TIMESTAMP},
+      MPP = #{mpp,jdbcType=VARCHAR},
+      TRANS_DATE_FROM_MPP = #{transDateFromMpp,jdbcType=TIMESTAMP}
+    where BOX_CODE = #{boxCode,jdbcType=VARCHAR}
+      and BOX_TYPE = #{boxType,jdbcType=VARCHAR}
+      and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+  </update>
+
+  <!--自定义 sql 开始-->
+  <select id="queryBoxByLccCode" parameterType="String" resultType="com.jet.scm.web.spem.vo.ScmBoxVO">
+    SELECT
+    box.BOX_CODE boxCode,
+    count(*) tubeNum
+    FROM PIP_SCM_FROZENBOX box
+    LEFT JOIN PIP_SCM_TRANS_PROC_DETAIL_BOX dbox ON dbox.BOX_CODE = box.BOX_CODE
+    INNER JOIN PIP_SCM_FROZENTUBE tube ON tube.BOX_CODE = box.BOX_CODE AND tube.BOX_TYPE = box.BOX_TYPE
+    WHERE 1 = 1
+    AND box.LCC_CODE = #{lccCode}
+    AND box.BOX_TYPE = 'A' AND dbox.BOX_CODE IS NULL
+    GROUP BY box.BOX_CODE
+    ORDER BY BOXCODE
+  </select>
+
+  <select id="queryBoxByRccCode" parameterType="String" resultType="com.jet.scm.web.spem.vo.ScmBox4MasterVO">
+    select box.lcc_code lccCode,
+    box.box_code boxCode,
+    count(tube.tube_code) total,
+    max(lcc.lcc_name) lccName,
+    max(lcc.rcc_code) rccCode,
+    max(rcc.rcc_name) rccName
+    from pip_scm_frozenbox box
+    left join pip_scm_frozentube tube
+    on box.box_code = tube.box_code
+    and box.box_type = tube.tube_type
+    left join PIP_COMM_LCC lcc
+    on box.lcc_code = lcc.lcc_code
+    left join PIP_COMM_RCC rcc
+    on rcc.RCC_CODE = lcc.RCC_CODE
+    where 1 = 1
+    and box.box_type = 'A'
+    and box.is_checkin = 2 <!--未入库的-->
+    and lcc.rcc_code = #{rccCode}
+    group by box.lcc_code, box.box_code
+    order by box.lcc_code,box.box_code
+  </select>
+
+  <select id="getFrozenboxByBoxCode" parameterType="String" resultType="com.jet.scm.web.spem.vo.ScmBox4MasterVO">
+    select box.box_code boxCode,
+    max(lcc.lcc_code) lccCode,
+    max(lcc.lcc_name) lccName,
+    max(rcc.rcc_code) rccCode,
+    max(rcc.rcc_name) rccName
+    from pip_scm_frozenbox box
+    left join PIP_COMM_LCC lcc
+    on box.lcc_code = lcc.lcc_code
+    left join PIP_COMM_RCC rcc
+    on rcc.RCC_CODE = lcc.RCC_CODE
+    where 1 = 1
+    and box.box_code = #{boxCode}
+    and box.box_type = 'A'
+    group by box.box_code
+  </select>
+</mapper>

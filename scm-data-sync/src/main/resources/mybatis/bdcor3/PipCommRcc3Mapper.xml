@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.datasync.bdcor3.mapper.PipCommRcc3Mapper" >
+  <resultMap id="BaseResultMap" type="com.jet.datasync.bdcor3.domain.PipCommRcc3" >
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <id column="RCC_CODE" property="rccCode" jdbcType="VARCHAR" />
+    <result column="RCC_NAME" property="rccName" jdbcType="VARCHAR" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="ENGLISH_NAME" property="englishName" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR" />
+    <result column="LATITUDE_LONGITUDE" property="latitudeLongitude" jdbcType="VARCHAR" />
+    <result column="IS_JOIN" property="isJoin" jdbcType="DECIMAL" />
+    <result column="JOIN_TIME" property="joinTime" jdbcType="DATE" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+    <result column="INITIAL_TASK" property="initialTask" jdbcType="VARCHAR" />
+    <result column="RISK_TASK" property="riskTask" jdbcType="VARCHAR" />
+    <result column="SHORT_FOLLOWUP_TASK" property="shortFollowupTask" jdbcType="VARCHAR" />
+    <result column="LONG_FOLLOWUP_TASK" property="longFollowupTask" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PROJECT_ID, RCC_CODE, RCC_NAME, COUNTRY_CODE, AREA_CODE, ENGLISH_NAME, ADDRESS, HELP_CODE, 
+    LATITUDE_LONGITUDE, IS_JOIN, JOIN_TIME, UPDATE_BY, UPDATE_TIME, INITIAL_TASK, RISK_TASK, 
+    SHORT_FOLLOWUP_TASK, LONG_FOLLOWUP_TASK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor3.domain.PipCommRcc3Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_COMM_RCC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor3.domain.PipCommRcc3Key" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_COMM_RCC
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and RCC_CODE = #{rccCode,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.datasync.bdcor3.domain.PipCommRcc3Example" resultType="java.lang.Integer" >
+    select count(*) from PIP_COMM_RCC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

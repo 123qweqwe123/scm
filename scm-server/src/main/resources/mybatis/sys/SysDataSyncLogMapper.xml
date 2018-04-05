@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jet.scm.web.sys.mapper.SysDataSyncLogMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.sys.domain.SysDataSyncLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="INSERT_COUNT" jdbcType="DECIMAL" property="insertCount" />
+    <result column="UPDATE_COUNT" jdbcType="DECIMAL" property="updateCount" />
+    <result column="DELETE_COUNT" jdbcType="DECIMAL" property="deleteCount" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="SYNC_ID" jdbcType="VARCHAR" property="syncId" />
+    <result column="IS_SUCCESS" jdbcType="DECIMAL" property="isSuccess" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, INSERT_COUNT, UPDATE_COUNT, DELETE_COUNT, START_TIME, END_TIME, SYNC_ID, IS_SUCCESS
+  </sql>
+  <select id="selectByExample" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SYS_DATA_SYNC_LOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_DATA_SYNC_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_DATA_SYNC_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLogExample">
+    delete from SYS_DATA_SYNC_LOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLog">
+    insert into SYS_DATA_SYNC_LOG (ID, INSERT_COUNT, UPDATE_COUNT, 
+      DELETE_COUNT, START_TIME, END_TIME, 
+      SYNC_ID, IS_SUCCESS)
+    values (#{id,jdbcType=VARCHAR}, #{insertCount,jdbcType=DECIMAL}, #{updateCount,jdbcType=DECIMAL}, 
+      #{deleteCount,jdbcType=DECIMAL}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{syncId,jdbcType=VARCHAR}, #{isSuccess,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLog">
+    insert into SYS_DATA_SYNC_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="insertCount != null">
+        INSERT_COUNT,
+      </if>
+      <if test="updateCount != null">
+        UPDATE_COUNT,
+      </if>
+      <if test="deleteCount != null">
+        DELETE_COUNT,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="syncId != null">
+        SYNC_ID,
+      </if>
+      <if test="isSuccess != null">
+        IS_SUCCESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="insertCount != null">
+        #{insertCount,jdbcType=DECIMAL},
+      </if>
+      <if test="updateCount != null">
+        #{updateCount,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteCount != null">
+        #{deleteCount,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncId != null">
+        #{syncId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLogExample" resultType="java.lang.Long">
+    select count(*) from SYS_DATA_SYNC_LOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYS_DATA_SYNC_LOG
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insertCount != null">
+        INSERT_COUNT = #{record.insertCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateCount != null">
+        UPDATE_COUNT = #{record.updateCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deleteCount != null">
+        DELETE_COUNT = #{record.deleteCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startTime != null">
+        START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.syncId != null">
+        SYNC_ID = #{record.syncId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSuccess != null">
+        IS_SUCCESS = #{record.isSuccess,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYS_DATA_SYNC_LOG
+    set ID = #{record.id,jdbcType=VARCHAR},
+      INSERT_COUNT = #{record.insertCount,jdbcType=DECIMAL},
+      UPDATE_COUNT = #{record.updateCount,jdbcType=DECIMAL},
+      DELETE_COUNT = #{record.deleteCount,jdbcType=DECIMAL},
+      START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      SYNC_ID = #{record.syncId,jdbcType=VARCHAR},
+      IS_SUCCESS = #{record.isSuccess,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLog">
+    update SYS_DATA_SYNC_LOG
+    <set>
+      <if test="insertCount != null">
+        INSERT_COUNT = #{insertCount,jdbcType=DECIMAL},
+      </if>
+      <if test="updateCount != null">
+        UPDATE_COUNT = #{updateCount,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteCount != null">
+        DELETE_COUNT = #{deleteCount,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncId != null">
+        SYNC_ID = #{syncId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        IS_SUCCESS = #{isSuccess,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.sys.domain.SysDataSyncLog">
+    update SYS_DATA_SYNC_LOG
+    set INSERT_COUNT = #{insertCount,jdbcType=DECIMAL},
+      UPDATE_COUNT = #{updateCount,jdbcType=DECIMAL},
+      DELETE_COUNT = #{deleteCount,jdbcType=DECIMAL},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      SYNC_ID = #{syncId,jdbcType=VARCHAR},
+      IS_SUCCESS = #{isSuccess,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByFilter" resultType="java.util.Map">
+    select
+      l.ID id,
+      l.INSERT_COUNT insertCount,
+      l.UPDATE_COUNT updateCount,
+      l.DELETE_COUNT deleteCount,
+      l.START_TIME startTime,
+      l.END_TIME endTime,
+      l.SYNC_ID syncId,
+      l.IS_SUCCESS isSuccess,
+      d.TASK_NAME taskName
+    from SYS_DATA_SYNC_LOG l left join SYS_DATA_SYNC d on l.SYNC_ID = d.id
+    where d.id is not null
+    <if test="syncId != null and syncId != ''">
+      and l.SYNC_ID = #{syncId}
+    </if>
+    <if test="isSuccess != null">
+      and l.IS_SUCCESS = #{isSuccess}
+    </if>
+    <if test="startTime != null">
+      and trunc(l.START_TIME, 'dd') &gt;= #{startTime, jdbcType=DATE}
+    </if>
+    <if test="endTime != null">
+      and trunc(l.END_TIME, 'dd') &lt;= #{endTime, jdbcType=DATE}
+    </if>
+    order by l.START_TIME
+  </select>
+</mapper>

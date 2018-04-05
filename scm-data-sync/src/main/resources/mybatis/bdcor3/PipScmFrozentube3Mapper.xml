@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.datasync.bdcor3.mapper.PipScmFrozentube3Mapper" >
+  <resultMap id="BaseResultMap" type="com.jet.datasync.bdcor3.domain.PipScmFrozentube3" >
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <id column="TUBE_CODE" property="tubeCode" jdbcType="VARCHAR" />
+    <id column="TUBE_TYPE" property="tubeType" jdbcType="VARCHAR" />
+    <result column="BOX_CODE" property="boxCode" jdbcType="VARCHAR" />
+    <result column="BOX_TYPE" property="boxType" jdbcType="VARCHAR" />
+    <result column="BOX_COLNO" property="boxColno" jdbcType="DECIMAL" />
+    <result column="BOX_ROWNO" property="boxRowno" jdbcType="DECIMAL" />
+    <result column="BLOOD_CODE" property="bloodCode" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="IS_HEMOLYSIS" property="isHemolysis" jdbcType="DECIMAL" />
+    <result column="IS_LIPID" property="isLipid" jdbcType="DECIMAL" />
+    <result column="LCC_CODE" property="lccCode" jdbcType="VARCHAR" />
+    <result column="IS_EMPTY" property="isEmpty" jdbcType="DECIMAL" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="TERMINAL_ID" property="terminalId" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="CLIENT_ID" property="clientId" jdbcType="VARCHAR" />
+    <result column="UPDATE_FLAG" property="updateFlag" jdbcType="DECIMAL" />
+    <result column="HR3_UPDATE_DATE" property="hr3UpdateDate" jdbcType="DATE" />
+    <result column="TRANS_DATE" property="transDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PROJECT_ID, TUBE_CODE, TUBE_TYPE, BOX_CODE, BOX_TYPE, BOX_COLNO, BOX_ROWNO, BLOOD_CODE, 
+    CREATE_DATE, CREATE_BY, REMARK, IS_HEMOLYSIS, IS_LIPID, LCC_CODE, IS_EMPTY, FILE_NAME, 
+    TERMINAL_ID, ID, VERSION, CLIENT_ID, UPDATE_FLAG, HR3_UPDATE_DATE, TRANS_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor3.domain.PipScmFrozentube3Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_SCM_FROZENTUBE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.datasync.bdcor3.domain.PipScmFrozentube3Key" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_SCM_FROZENTUBE
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and TUBE_CODE = #{tubeCode,jdbcType=VARCHAR}
+      and TUBE_TYPE = #{tubeType,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.jet.datasync.bdcor3.domain.PipScmFrozentube3Example" resultType="java.lang.Integer" >
+    select count(*) from PIP_SCM_FROZENTUBE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

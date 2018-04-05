@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.spem.mapper.PipScmTransProcDetailBoxMapper">
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.spem.domain.PipScmTransProcDetailBox">
+    <id column="ID" property="id" jdbcType="VARCHAR"/>
+    <result column="TRANS_ID" property="transId" jdbcType="VARCHAR"/>
+    <result column="TRANS_NO" property="transNo" jdbcType="VARCHAR"/>
+    <result column="TRANS_DETAIL_NO" property="transDetailNo" jdbcType="VARCHAR"/>
+    <result column="BOX_CODE" property="boxCode" jdbcType="VARCHAR"/>
+    <result column="BOX_TYPE" property="boxType" jdbcType="VARCHAR"/>
+    <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR"/>
+    <result column="CREATE_BY_NAME" property="createByName" jdbcType="VARCHAR"/>
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR"/>
+    <result column="UPDATE_BY_NAME" property="updateByName" jdbcType="VARCHAR"/>
+    <result column="TRANS_DETAIL_ID" property="transDetailId" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TRANS_ID, TRANS_NO, TRANS_DETAIL_NO, BOX_CODE, BOX_TYPE, CREATE_TIME, CREATE_BY,
+    CREATE_BY_NAME, UPDATE_TIME, UPDATE_BY, UPDATE_BY_NAME, TRANS_DETAIL_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailBoxExample">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL_BOX
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from PIP_SCM_TRANS_PROC_DETAIL_BOX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailBox">
+    insert into PIP_SCM_TRANS_PROC_DETAIL_BOX (ID, TRANS_ID, TRANS_NO,
+    TRANS_DETAIL_NO, BOX_CODE, BOX_TYPE,
+    CREATE_TIME, CREATE_BY, CREATE_BY_NAME,
+    UPDATE_TIME, UPDATE_BY, UPDATE_BY_NAME,
+    TRANS_DETAIL_ID)
+    values (#{id,jdbcType=VARCHAR}, #{transId,jdbcType=VARCHAR}, #{transNo,jdbcType=VARCHAR},
+    #{transDetailNo,jdbcType=VARCHAR}, #{boxCode,jdbcType=VARCHAR}, #{boxType,jdbcType=VARCHAR},
+    #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{createByName,jdbcType=VARCHAR},
+    #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateByName,jdbcType=VARCHAR},
+    #{transDetailId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.spem.domain.PipScmTransProcDetailBox">
+    insert into PIP_SCM_TRANS_PROC_DETAIL_BOX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="transId != null">
+        TRANS_ID,
+      </if>
+      <if test="transNo != null">
+        TRANS_NO,
+      </if>
+      <if test="transDetailNo != null">
+        TRANS_DETAIL_NO,
+      </if>
+      <if test="boxCode != null">
+        BOX_CODE,
+      </if>
+      <if test="boxType != null">
+        BOX_TYPE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createByName != null">
+        CREATE_BY_NAME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="updateByName != null">
+        UPDATE_BY_NAME,
+      </if>
+      <if test="transDetailId != null">
+        TRANS_DETAIL_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null">
+        #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transDetailNo != null">
+        #{transDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="boxCode != null">
+        #{boxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="boxType != null">
+        #{boxType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createByName != null">
+        #{createByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateByName != null">
+        #{updateByName,jdbcType=VARCHAR},
+      </if>
+      <if test="transDetailId != null">
+        #{transDetailId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PIP_SCM_TRANS_PROC_DETAIL_BOX
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transId != null">
+        TRANS_ID = #{record.transId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transNo != null">
+        TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDetailNo != null">
+        TRANS_DETAIL_NO = #{record.transDetailNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boxCode != null">
+        BOX_CODE = #{record.boxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.boxType != null">
+        BOX_TYPE = #{record.boxType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null">
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createByName != null">
+        CREATE_BY_NAME = #{record.createByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateByName != null">
+        UPDATE_BY_NAME = #{record.updateByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDetailId != null">
+        TRANS_DETAIL_ID = #{record.transDetailId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PIP_SCM_TRANS_PROC_DETAIL_BOX
+    set ID = #{record.id,jdbcType=VARCHAR},
+    TRANS_ID = #{record.transId,jdbcType=VARCHAR},
+    TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+    TRANS_DETAIL_NO = #{record.transDetailNo,jdbcType=VARCHAR},
+    BOX_CODE = #{record.boxCode,jdbcType=VARCHAR},
+    BOX_TYPE = #{record.boxType,jdbcType=VARCHAR},
+    CREATE_TIME = #{record.createTime,jdbcType=DATE},
+    CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+    CREATE_BY_NAME = #{record.createByName,jdbcType=VARCHAR},
+    UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+    UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+    UPDATE_BY_NAME = #{record.updateByName,jdbcType=VARCHAR},
+    TRANS_DETAIL_ID = #{record.transDetailId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+</mapper>

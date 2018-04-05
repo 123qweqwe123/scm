@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jet.scm.web.proj.mapper.PipCommLccMapper" >
+  <resultMap id="BaseResultMap" type="com.jet.scm.web.proj.domain.PipCommLcc" >
+    <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <id column="LCC_CODE" property="lccCode" jdbcType="VARCHAR" />
+    <result column="LCC_NAME" property="lccName" jdbcType="VARCHAR" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+    <result column="IS_REMOVED" property="isRemoved" jdbcType="DECIMAL" />
+    <result column="FTP_IP" property="ftpIp" jdbcType="VARCHAR" />
+    <result column="FTP_PORT" property="ftpPort" jdbcType="DECIMAL" />
+    <result column="FTP_USER" property="ftpUser" jdbcType="VARCHAR" />
+    <result column="FTP_PASSWORD" property="ftpPassword" jdbcType="VARCHAR" />
+    <result column="COST_SUM" property="costSum" jdbcType="DECIMAL" />
+    <result column="ENGLISH_NAME" property="englishName" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="PROJECT_MANAGER" property="projectManager" jdbcType="VARCHAR" />
+    <result column="PM_TEL" property="pmTel" jdbcType="VARCHAR" />
+    <result column="PM_EMAIL" property="pmEmail" jdbcType="VARCHAR" />
+    <result column="CONTRACT_SIGN_DATE" property="contractSignDate" jdbcType="TIMESTAMP" />
+    <result column="IS_SIGN_CONTRACT" property="isSignContract" jdbcType="CHAR" />
+    <result column="HIGHER_APPROVE_DATE" property="higherApproveDate" jdbcType="TIMESTAMP" />
+    <result column="IS_TRAINING" property="isTraining" jdbcType="CHAR" />
+    <result column="EXPECT_START_DATE" property="expectStartDate" jdbcType="TIMESTAMP" />
+    <result column="LCC_TYPE" property="lccType" jdbcType="VARCHAR" />
+    <result column="IS_ETHICAL" property="isEthical" jdbcType="VARCHAR" />
+    <result column="ETHICAL_EFFECTIVE_DATE" property="ethicalEffectiveDate" jdbcType="TIMESTAMP" />
+    <result column="ETHICAL_DISABLE_DATE" property="ethicalDisableDate" jdbcType="TIMESTAMP" />
+    <result column="ETHICAL_PAPER_CODE" property="ethicalPaperCode" jdbcType="VARCHAR" />
+    <result column="DELIVERY_ADDRESS" property="deliveryAddress" jdbcType="VARCHAR" />
+    <result column="DELIVERY_CONTACT" property="deliveryContact" jdbcType="VARCHAR" />
+    <result column="DELIVERY_TEL" property="deliveryTel" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="CONTACT" property="contact" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="RCC_CODE" property="rccCode" jdbcType="VARCHAR" />
+    <result column="IS_ADMIN_DEP" property="isAdminDep" jdbcType="CHAR" />
+    <result column="ORGAN" property="organ" jdbcType="VARCHAR" />
+    <result column="LCCROLE" property="lccrole" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="WORKLOAD" property="workload" jdbcType="DECIMAL" />
+    <result column="HELP_CODE" property="helpCode" jdbcType="VARCHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="LCC_CATEGORY" property="lccCategory" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_TYPE" property="hospitalType" jdbcType="VARCHAR" />
+    <result column="PM_DUTY" property="pmDuty" jdbcType="VARCHAR" />
+    <result column="ESTIMATED_BEGIN_TIME" property="estimatedBeginTime" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATED_END_TIME" property="estimatedEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PROJECT_ID, LCC_CODE, LCC_NAME, COUNTRY_CODE, AREA_CODE, STATUS, CREATE_BY, CREATE_DATE, 
+    UPDATE_BY, UPDATE_DATE, IS_REMOVED, FTP_IP, FTP_PORT, FTP_USER, FTP_PASSWORD, COST_SUM, 
+    ENGLISH_NAME, ADDRESS, PROJECT_MANAGER, PM_TEL, PM_EMAIL, CONTRACT_SIGN_DATE, IS_SIGN_CONTRACT, 
+    HIGHER_APPROVE_DATE, IS_TRAINING, EXPECT_START_DATE, LCC_TYPE, IS_ETHICAL, ETHICAL_EFFECTIVE_DATE, 
+    ETHICAL_DISABLE_DATE, ETHICAL_PAPER_CODE, DELIVERY_ADDRESS, DELIVERY_CONTACT, DELIVERY_TEL, 
+    START_DATE, CONTACT, TEL, RCC_CODE, IS_ADMIN_DEP, ORGAN, LCCROLE, CITY_CODE, WORKLOAD, 
+    HELP_CODE, END_DATE, LCC_CATEGORY, HOSPITAL_TYPE, PM_DUTY, ESTIMATED_BEGIN_TIME, 
+    ESTIMATED_END_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jet.scm.web.proj.domain.PipCommLccExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PIP_COMM_LCC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jet.scm.web.proj.domain.PipCommLccKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIP_COMM_LCC
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.jet.scm.web.proj.domain.PipCommLccKey" >
+    delete from PIP_COMM_LCC
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jet.scm.web.proj.domain.PipCommLccExample" >
+    delete from PIP_COMM_LCC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jet.scm.web.proj.domain.PipCommLcc" >
+    insert into PIP_COMM_LCC (PROJECT_ID, LCC_CODE, LCC_NAME, 
+      COUNTRY_CODE, AREA_CODE, STATUS, 
+      CREATE_BY, CREATE_DATE, UPDATE_BY, 
+      UPDATE_DATE, IS_REMOVED, FTP_IP, 
+      FTP_PORT, FTP_USER, FTP_PASSWORD, 
+      COST_SUM, ENGLISH_NAME, ADDRESS, 
+      PROJECT_MANAGER, PM_TEL, PM_EMAIL, 
+      CONTRACT_SIGN_DATE, IS_SIGN_CONTRACT, HIGHER_APPROVE_DATE, 
+      IS_TRAINING, EXPECT_START_DATE, LCC_TYPE, 
+      IS_ETHICAL, ETHICAL_EFFECTIVE_DATE, ETHICAL_DISABLE_DATE, 
+      ETHICAL_PAPER_CODE, DELIVERY_ADDRESS, DELIVERY_CONTACT, 
+      DELIVERY_TEL, START_DATE, CONTACT, 
+      TEL, RCC_CODE, IS_ADMIN_DEP, 
+      ORGAN, LCCROLE, CITY_CODE, 
+      WORKLOAD, HELP_CODE, END_DATE, 
+      LCC_CATEGORY, HOSPITAL_TYPE, PM_DUTY, 
+      ESTIMATED_BEGIN_TIME, ESTIMATED_END_TIME
+      )
+    values (#{projectId,jdbcType=VARCHAR}, #{lccCode,jdbcType=VARCHAR}, #{lccName,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=DATE}, #{isRemoved,jdbcType=DECIMAL}, #{ftpIp,jdbcType=VARCHAR}, 
+      #{ftpPort,jdbcType=DECIMAL}, #{ftpUser,jdbcType=VARCHAR}, #{ftpPassword,jdbcType=VARCHAR}, 
+      #{costSum,jdbcType=DECIMAL}, #{englishName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{projectManager,jdbcType=VARCHAR}, #{pmTel,jdbcType=VARCHAR}, #{pmEmail,jdbcType=VARCHAR}, 
+      #{contractSignDate,jdbcType=TIMESTAMP}, #{isSignContract,jdbcType=CHAR}, #{higherApproveDate,jdbcType=TIMESTAMP}, 
+      #{isTraining,jdbcType=CHAR}, #{expectStartDate,jdbcType=TIMESTAMP}, #{lccType,jdbcType=VARCHAR}, 
+      #{isEthical,jdbcType=VARCHAR}, #{ethicalEffectiveDate,jdbcType=TIMESTAMP}, #{ethicalDisableDate,jdbcType=TIMESTAMP}, 
+      #{ethicalPaperCode,jdbcType=VARCHAR}, #{deliveryAddress,jdbcType=VARCHAR}, #{deliveryContact,jdbcType=VARCHAR}, 
+      #{deliveryTel,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{contact,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{rccCode,jdbcType=VARCHAR}, #{isAdminDep,jdbcType=CHAR}, 
+      #{organ,jdbcType=VARCHAR}, #{lccrole,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{workload,jdbcType=DECIMAL}, #{helpCode,jdbcType=VARCHAR}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{lccCategory,jdbcType=VARCHAR}, #{hospitalType,jdbcType=VARCHAR}, #{pmDuty,jdbcType=VARCHAR}, 
+      #{estimatedBeginTime,jdbcType=TIMESTAMP}, #{estimatedEndTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jet.scm.web.proj.domain.PipCommLcc" >
+    insert into PIP_COMM_LCC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="lccCode != null" >
+        LCC_CODE,
+      </if>
+      <if test="lccName != null" >
+        LCC_NAME,
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE,
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="isRemoved != null" >
+        IS_REMOVED,
+      </if>
+      <if test="ftpIp != null" >
+        FTP_IP,
+      </if>
+      <if test="ftpPort != null" >
+        FTP_PORT,
+      </if>
+      <if test="ftpUser != null" >
+        FTP_USER,
+      </if>
+      <if test="ftpPassword != null" >
+        FTP_PASSWORD,
+      </if>
+      <if test="costSum != null" >
+        COST_SUM,
+      </if>
+      <if test="englishName != null" >
+        ENGLISH_NAME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="projectManager != null" >
+        PROJECT_MANAGER,
+      </if>
+      <if test="pmTel != null" >
+        PM_TEL,
+      </if>
+      <if test="pmEmail != null" >
+        PM_EMAIL,
+      </if>
+      <if test="contractSignDate != null" >
+        CONTRACT_SIGN_DATE,
+      </if>
+      <if test="isSignContract != null" >
+        IS_SIGN_CONTRACT,
+      </if>
+      <if test="higherApproveDate != null" >
+        HIGHER_APPROVE_DATE,
+      </if>
+      <if test="isTraining != null" >
+        IS_TRAINING,
+      </if>
+      <if test="expectStartDate != null" >
+        EXPECT_START_DATE,
+      </if>
+      <if test="lccType != null" >
+        LCC_TYPE,
+      </if>
+      <if test="isEthical != null" >
+        IS_ETHICAL,
+      </if>
+      <if test="ethicalEffectiveDate != null" >
+        ETHICAL_EFFECTIVE_DATE,
+      </if>
+      <if test="ethicalDisableDate != null" >
+        ETHICAL_DISABLE_DATE,
+      </if>
+      <if test="ethicalPaperCode != null" >
+        ETHICAL_PAPER_CODE,
+      </if>
+      <if test="deliveryAddress != null" >
+        DELIVERY_ADDRESS,
+      </if>
+      <if test="deliveryContact != null" >
+        DELIVERY_CONTACT,
+      </if>
+      <if test="deliveryTel != null" >
+        DELIVERY_TEL,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="contact != null" >
+        CONTACT,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="rccCode != null" >
+        RCC_CODE,
+      </if>
+      <if test="isAdminDep != null" >
+        IS_ADMIN_DEP,
+      </if>
+      <if test="organ != null" >
+        ORGAN,
+      </if>
+      <if test="lccrole != null" >
+        LCCROLE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="workload != null" >
+        WORKLOAD,
+      </if>
+      <if test="helpCode != null" >
+        HELP_CODE,
+      </if>
+      <if test="endDate != null" >
+        END_DATE,
+      </if>
+      <if test="lccCategory != null" >
+        LCC_CATEGORY,
+      </if>
+      <if test="hospitalType != null" >
+        HOSPITAL_TYPE,
+      </if>
+      <if test="pmDuty != null" >
+        PM_DUTY,
+      </if>
+      <if test="estimatedBeginTime != null" >
+        ESTIMATED_BEGIN_TIME,
+      </if>
+      <if test="estimatedEndTime != null" >
+        ESTIMATED_END_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lccCode != null" >
+        #{lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lccName != null" >
+        #{lccName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="isRemoved != null" >
+        #{isRemoved,jdbcType=DECIMAL},
+      </if>
+      <if test="ftpIp != null" >
+        #{ftpIp,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPort != null" >
+        #{ftpPort,jdbcType=DECIMAL},
+      </if>
+      <if test="ftpUser != null" >
+        #{ftpUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPassword != null" >
+        #{ftpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="costSum != null" >
+        #{costSum,jdbcType=DECIMAL},
+      </if>
+      <if test="englishName != null" >
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="projectManager != null" >
+        #{projectManager,jdbcType=VARCHAR},
+      </if>
+      <if test="pmTel != null" >
+        #{pmTel,jdbcType=VARCHAR},
+      </if>
+      <if test="pmEmail != null" >
+        #{pmEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contractSignDate != null" >
+        #{contractSignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSignContract != null" >
+        #{isSignContract,jdbcType=CHAR},
+      </if>
+      <if test="higherApproveDate != null" >
+        #{higherApproveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTraining != null" >
+        #{isTraining,jdbcType=CHAR},
+      </if>
+      <if test="expectStartDate != null" >
+        #{expectStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lccType != null" >
+        #{lccType,jdbcType=VARCHAR},
+      </if>
+      <if test="isEthical != null" >
+        #{isEthical,jdbcType=VARCHAR},
+      </if>
+      <if test="ethicalEffectiveDate != null" >
+        #{ethicalEffectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ethicalDisableDate != null" >
+        #{ethicalDisableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ethicalPaperCode != null" >
+        #{ethicalPaperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddress != null" >
+        #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryContact != null" >
+        #{deliveryContact,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTel != null" >
+        #{deliveryTel,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="rccCode != null" >
+        #{rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdminDep != null" >
+        #{isAdminDep,jdbcType=CHAR},
+      </if>
+      <if test="organ != null" >
+        #{organ,jdbcType=VARCHAR},
+      </if>
+      <if test="lccrole != null" >
+        #{lccrole,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workload != null" >
+        #{workload,jdbcType=DECIMAL},
+      </if>
+      <if test="helpCode != null" >
+        #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lccCategory != null" >
+        #{lccCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalType != null" >
+        #{hospitalType,jdbcType=VARCHAR},
+      </if>
+      <if test="pmDuty != null" >
+        #{pmDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="estimatedBeginTime != null" >
+        #{estimatedBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedEndTime != null" >
+        #{estimatedEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jet.scm.web.proj.domain.PipCommLccExample" resultType="java.lang.Integer" >
+    select count(*) from PIP_COMM_LCC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PIP_COMM_LCC
+    <set >
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccCode != null" >
+        LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccName != null" >
+        LCC_NAME = #{record.lccName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryCode != null" >
+        COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCode != null" >
+        AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createBy != null" >
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updateBy != null" >
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=DATE},
+      </if>
+      <if test="record.isRemoved != null" >
+        IS_REMOVED = #{record.isRemoved,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ftpIp != null" >
+        FTP_IP = #{record.ftpIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ftpPort != null" >
+        FTP_PORT = #{record.ftpPort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ftpUser != null" >
+        FTP_USER = #{record.ftpUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ftpPassword != null" >
+        FTP_PASSWORD = #{record.ftpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.costSum != null" >
+        COST_SUM = #{record.costSum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.englishName != null" >
+        ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectManager != null" >
+        PROJECT_MANAGER = #{record.projectManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmTel != null" >
+        PM_TEL = #{record.pmTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmEmail != null" >
+        PM_EMAIL = #{record.pmEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractSignDate != null" >
+        CONTRACT_SIGN_DATE = #{record.contractSignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isSignContract != null" >
+        IS_SIGN_CONTRACT = #{record.isSignContract,jdbcType=CHAR},
+      </if>
+      <if test="record.higherApproveDate != null" >
+        HIGHER_APPROVE_DATE = #{record.higherApproveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isTraining != null" >
+        IS_TRAINING = #{record.isTraining,jdbcType=CHAR},
+      </if>
+      <if test="record.expectStartDate != null" >
+        EXPECT_START_DATE = #{record.expectStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lccType != null" >
+        LCC_TYPE = #{record.lccType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEthical != null" >
+        IS_ETHICAL = #{record.isEthical,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ethicalEffectiveDate != null" >
+        ETHICAL_EFFECTIVE_DATE = #{record.ethicalEffectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ethicalDisableDate != null" >
+        ETHICAL_DISABLE_DATE = #{record.ethicalDisableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ethicalPaperCode != null" >
+        ETHICAL_PAPER_CODE = #{record.ethicalPaperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryAddress != null" >
+        DELIVERY_ADDRESS = #{record.deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryContact != null" >
+        DELIVERY_CONTACT = #{record.deliveryContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryTel != null" >
+        DELIVERY_TEL = #{record.deliveryTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contact != null" >
+        CONTACT = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        TEL = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rccCode != null" >
+        RCC_CODE = #{record.rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAdminDep != null" >
+        IS_ADMIN_DEP = #{record.isAdminDep,jdbcType=CHAR},
+      </if>
+      <if test="record.organ != null" >
+        ORGAN = #{record.organ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lccrole != null" >
+        LCCROLE = #{record.lccrole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workload != null" >
+        WORKLOAD = #{record.workload,jdbcType=DECIMAL},
+      </if>
+      <if test="record.helpCode != null" >
+        HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endDate != null" >
+        END_DATE = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lccCategory != null" >
+        LCC_CATEGORY = #{record.lccCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hospitalType != null" >
+        HOSPITAL_TYPE = #{record.hospitalType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmDuty != null" >
+        PM_DUTY = #{record.pmDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estimatedBeginTime != null" >
+        ESTIMATED_BEGIN_TIME = #{record.estimatedBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.estimatedEndTime != null" >
+        ESTIMATED_END_TIME = #{record.estimatedEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PIP_COMM_LCC
+    set PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      LCC_CODE = #{record.lccCode,jdbcType=VARCHAR},
+      LCC_NAME = #{record.lccName,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=DECIMAL},
+      CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{record.updateDate,jdbcType=DATE},
+      IS_REMOVED = #{record.isRemoved,jdbcType=DECIMAL},
+      FTP_IP = #{record.ftpIp,jdbcType=VARCHAR},
+      FTP_PORT = #{record.ftpPort,jdbcType=DECIMAL},
+      FTP_USER = #{record.ftpUser,jdbcType=VARCHAR},
+      FTP_PASSWORD = #{record.ftpPassword,jdbcType=VARCHAR},
+      COST_SUM = #{record.costSum,jdbcType=DECIMAL},
+      ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      PROJECT_MANAGER = #{record.projectManager,jdbcType=VARCHAR},
+      PM_TEL = #{record.pmTel,jdbcType=VARCHAR},
+      PM_EMAIL = #{record.pmEmail,jdbcType=VARCHAR},
+      CONTRACT_SIGN_DATE = #{record.contractSignDate,jdbcType=TIMESTAMP},
+      IS_SIGN_CONTRACT = #{record.isSignContract,jdbcType=CHAR},
+      HIGHER_APPROVE_DATE = #{record.higherApproveDate,jdbcType=TIMESTAMP},
+      IS_TRAINING = #{record.isTraining,jdbcType=CHAR},
+      EXPECT_START_DATE = #{record.expectStartDate,jdbcType=TIMESTAMP},
+      LCC_TYPE = #{record.lccType,jdbcType=VARCHAR},
+      IS_ETHICAL = #{record.isEthical,jdbcType=VARCHAR},
+      ETHICAL_EFFECTIVE_DATE = #{record.ethicalEffectiveDate,jdbcType=TIMESTAMP},
+      ETHICAL_DISABLE_DATE = #{record.ethicalDisableDate,jdbcType=TIMESTAMP},
+      ETHICAL_PAPER_CODE = #{record.ethicalPaperCode,jdbcType=VARCHAR},
+      DELIVERY_ADDRESS = #{record.deliveryAddress,jdbcType=VARCHAR},
+      DELIVERY_CONTACT = #{record.deliveryContact,jdbcType=VARCHAR},
+      DELIVERY_TEL = #{record.deliveryTel,jdbcType=VARCHAR},
+      START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      CONTACT = #{record.contact,jdbcType=VARCHAR},
+      TEL = #{record.tel,jdbcType=VARCHAR},
+      RCC_CODE = #{record.rccCode,jdbcType=VARCHAR},
+      IS_ADMIN_DEP = #{record.isAdminDep,jdbcType=CHAR},
+      ORGAN = #{record.organ,jdbcType=VARCHAR},
+      LCCROLE = #{record.lccrole,jdbcType=VARCHAR},
+      CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      WORKLOAD = #{record.workload,jdbcType=DECIMAL},
+      HELP_CODE = #{record.helpCode,jdbcType=VARCHAR},
+      END_DATE = #{record.endDate,jdbcType=TIMESTAMP},
+      LCC_CATEGORY = #{record.lccCategory,jdbcType=VARCHAR},
+      HOSPITAL_TYPE = #{record.hospitalType,jdbcType=VARCHAR},
+      PM_DUTY = #{record.pmDuty,jdbcType=VARCHAR},
+      ESTIMATED_BEGIN_TIME = #{record.estimatedBeginTime,jdbcType=TIMESTAMP},
+      ESTIMATED_END_TIME = #{record.estimatedEndTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jet.scm.web.proj.domain.PipCommLcc" >
+    update PIP_COMM_LCC
+    <set >
+      <if test="lccName != null" >
+        LCC_NAME = #{lccName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="isRemoved != null" >
+        IS_REMOVED = #{isRemoved,jdbcType=DECIMAL},
+      </if>
+      <if test="ftpIp != null" >
+        FTP_IP = #{ftpIp,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPort != null" >
+        FTP_PORT = #{ftpPort,jdbcType=DECIMAL},
+      </if>
+      <if test="ftpUser != null" >
+        FTP_USER = #{ftpUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPassword != null" >
+        FTP_PASSWORD = #{ftpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="costSum != null" >
+        COST_SUM = #{costSum,jdbcType=DECIMAL},
+      </if>
+      <if test="englishName != null" >
+        ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="projectManager != null" >
+        PROJECT_MANAGER = #{projectManager,jdbcType=VARCHAR},
+      </if>
+      <if test="pmTel != null" >
+        PM_TEL = #{pmTel,jdbcType=VARCHAR},
+      </if>
+      <if test="pmEmail != null" >
+        PM_EMAIL = #{pmEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contractSignDate != null" >
+        CONTRACT_SIGN_DATE = #{contractSignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSignContract != null" >
+        IS_SIGN_CONTRACT = #{isSignContract,jdbcType=CHAR},
+      </if>
+      <if test="higherApproveDate != null" >
+        HIGHER_APPROVE_DATE = #{higherApproveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTraining != null" >
+        IS_TRAINING = #{isTraining,jdbcType=CHAR},
+      </if>
+      <if test="expectStartDate != null" >
+        EXPECT_START_DATE = #{expectStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lccType != null" >
+        LCC_TYPE = #{lccType,jdbcType=VARCHAR},
+      </if>
+      <if test="isEthical != null" >
+        IS_ETHICAL = #{isEthical,jdbcType=VARCHAR},
+      </if>
+      <if test="ethicalEffectiveDate != null" >
+        ETHICAL_EFFECTIVE_DATE = #{ethicalEffectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ethicalDisableDate != null" >
+        ETHICAL_DISABLE_DATE = #{ethicalDisableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ethicalPaperCode != null" >
+        ETHICAL_PAPER_CODE = #{ethicalPaperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddress != null" >
+        DELIVERY_ADDRESS = #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryContact != null" >
+        DELIVERY_CONTACT = #{deliveryContact,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTel != null" >
+        DELIVERY_TEL = #{deliveryTel,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null" >
+        CONTACT = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="rccCode != null" >
+        RCC_CODE = #{rccCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdminDep != null" >
+        IS_ADMIN_DEP = #{isAdminDep,jdbcType=CHAR},
+      </if>
+      <if test="organ != null" >
+        ORGAN = #{organ,jdbcType=VARCHAR},
+      </if>
+      <if test="lccrole != null" >
+        LCCROLE = #{lccrole,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workload != null" >
+        WORKLOAD = #{workload,jdbcType=DECIMAL},
+      </if>
+      <if test="helpCode != null" >
+        HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lccCategory != null" >
+        LCC_CATEGORY = #{lccCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalType != null" >
+        HOSPITAL_TYPE = #{hospitalType,jdbcType=VARCHAR},
+      </if>
+      <if test="pmDuty != null" >
+        PM_DUTY = #{pmDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="estimatedBeginTime != null" >
+        ESTIMATED_BEGIN_TIME = #{estimatedBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedEndTime != null" >
+        ESTIMATED_END_TIME = #{estimatedEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jet.scm.web.proj.domain.PipCommLcc" >
+    update PIP_COMM_LCC
+    set LCC_NAME = #{lccName,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      IS_REMOVED = #{isRemoved,jdbcType=DECIMAL},
+      FTP_IP = #{ftpIp,jdbcType=VARCHAR},
+      FTP_PORT = #{ftpPort,jdbcType=DECIMAL},
+      FTP_USER = #{ftpUser,jdbcType=VARCHAR},
+      FTP_PASSWORD = #{ftpPassword,jdbcType=VARCHAR},
+      COST_SUM = #{costSum,jdbcType=DECIMAL},
+      ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      PROJECT_MANAGER = #{projectManager,jdbcType=VARCHAR},
+      PM_TEL = #{pmTel,jdbcType=VARCHAR},
+      PM_EMAIL = #{pmEmail,jdbcType=VARCHAR},
+      CONTRACT_SIGN_DATE = #{contractSignDate,jdbcType=TIMESTAMP},
+      IS_SIGN_CONTRACT = #{isSignContract,jdbcType=CHAR},
+      HIGHER_APPROVE_DATE = #{higherApproveDate,jdbcType=TIMESTAMP},
+      IS_TRAINING = #{isTraining,jdbcType=CHAR},
+      EXPECT_START_DATE = #{expectStartDate,jdbcType=TIMESTAMP},
+      LCC_TYPE = #{lccType,jdbcType=VARCHAR},
+      IS_ETHICAL = #{isEthical,jdbcType=VARCHAR},
+      ETHICAL_EFFECTIVE_DATE = #{ethicalEffectiveDate,jdbcType=TIMESTAMP},
+      ETHICAL_DISABLE_DATE = #{ethicalDisableDate,jdbcType=TIMESTAMP},
+      ETHICAL_PAPER_CODE = #{ethicalPaperCode,jdbcType=VARCHAR},
+      DELIVERY_ADDRESS = #{deliveryAddress,jdbcType=VARCHAR},
+      DELIVERY_CONTACT = #{deliveryContact,jdbcType=VARCHAR},
+      DELIVERY_TEL = #{deliveryTel,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      CONTACT = #{contact,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      RCC_CODE = #{rccCode,jdbcType=VARCHAR},
+      IS_ADMIN_DEP = #{isAdminDep,jdbcType=CHAR},
+      ORGAN = #{organ,jdbcType=VARCHAR},
+      LCCROLE = #{lccrole,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      WORKLOAD = #{workload,jdbcType=DECIMAL},
+      HELP_CODE = #{helpCode,jdbcType=VARCHAR},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      LCC_CATEGORY = #{lccCategory,jdbcType=VARCHAR},
+      HOSPITAL_TYPE = #{hospitalType,jdbcType=VARCHAR},
+      PM_DUTY = #{pmDuty,jdbcType=VARCHAR},
+      ESTIMATED_BEGIN_TIME = #{estimatedBeginTime,jdbcType=TIMESTAMP},
+      ESTIMATED_END_TIME = #{estimatedEndTime,jdbcType=TIMESTAMP}
+    where PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+      and LCC_CODE = #{lccCode,jdbcType=VARCHAR}
+  </update>
+</mapper>
